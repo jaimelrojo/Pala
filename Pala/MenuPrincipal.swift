@@ -13,6 +13,7 @@ class MenuModelView: ObservableObject {
     @Published var alturaMenu1: Double = 0.08
     @Published var anchoMenu1: Double = 0.88
     @Published var juegoIniciado: Bool = false
+    @Published var dificultades: [String] = ["Normal", "Dificil", "Extremo"]
     
     let animation: Animation = .spring(response: 0.7, dampingFraction: 0.8)
 }
@@ -57,7 +58,7 @@ struct MenuPrincipal: View {
                 Button {
                     menuViewModel.mostrarMenu1 = true
                     menuViewModel.anchoMenu1 = 1
-                    menuViewModel.alturaMenu1 = 0.58
+                    menuViewModel.alturaMenu1 = 0.50
                     textoBoton = ""
                 } label: {
                     BotonRectangular(texto: textoBoton,

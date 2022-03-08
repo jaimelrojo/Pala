@@ -58,6 +58,5 @@ struct RoundPopUp: View {
 struct RoundPopUp_Previews: PreviewProvider {
     static var previews: some View {
         Juego()
-            
     }
 }

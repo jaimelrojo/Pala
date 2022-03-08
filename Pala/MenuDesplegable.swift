@@ -12,11 +12,12 @@ struct MenuDesplegable: View {
     @ObservedObject var menuViewModel: MenuModelView
     
 //    var animation: Animation = .spring(response: 0.7, dampingFraction: 0.8)
-    @State var dificultades: [String] = ["Facil", "Medio", "Dificil", "Experto"]
+//    @State var dificultades: [String] = ["Normal", "Dificil", "Extremo"]
+    @State var colorDificultades: [Color] = [Color("ColorPrincipalNegro"), Color("ColorPrincipalNegro"), Color("ColorPrincipalNegro")]
     
     var body: some View {
         
-        VStack(spacing: 0) {
+        VStack(spacing: 40) {
             
             Spacer()
             
@@ -25,7 +26,23 @@ struct MenuDesplegable: View {
                 .font(.system(size: UIScreen.main.bounds.height / 40,
                               weight: .light,
                               design: .monospaced))
-                .animation(menuViewModel.animation.delay(0.2))
+                .animation(menuViewModel.animation)
+            
+            VStack {
+                ForEach(menuViewModel.dificultades.indices) { index in
+                    Button {
+                        colorDificultades = [Color("ColorPrincipalNegro"), Color("ColorPrincipalNegro"), Color("ColorPrincipalNegro")]
+                        colorDificultades[index] = Color.green
+                    } label: {
+                        BotonRectangular(texto: "\(menuViewModel.dificultades[index])",
+                                         colorFondo: colorDificultades[index],
+                                         colorLetra: Color("ColorPrincipalBlanco"),
+                                         width: 0.88,
+                                         height: 0.06)
+                    }
+                    .animation(menuViewModel.animation.delay(Double(index + 1)/10))
+                }
+            }
             
 //            Picker("", selection: $dificultades) {
 //                ForEach(0..<4) { index in
@@ -76,5 +93,6 @@ struct MenuDesplegable: View {
 struct MenuDesplegable_Previews: PreviewProvider {
     static var previews: some View {
         MenuPrincipal()
+            .preferredColorScheme(.dark)
     }
 }

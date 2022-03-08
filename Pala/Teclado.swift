@@ -11,8 +11,6 @@ struct Teclado: View {
     
     @ObservedObject var palabraViewModel: PalabrasModelView
     
-    var animation: Animation = .spring(response: 0.5, dampingFraction: 0.7)
-    
     var body: some View {
         VStack(spacing: 3) {
             
@@ -31,10 +29,12 @@ struct Teclado: View {
                             palabraViewModel.palabra[4] = palabraViewModel.letras[index]
                         }
                     } label: {
-                        Tecla(text: palabraViewModel.letras[index],
+                        Tecla(palabraViewModel: palabraViewModel,
+                              text: palabraViewModel.letras[index],
                               color: palabraViewModel.coloresTeclas[index],
                               width: UIScreen.main.bounds.width / 11,
-                              height: UIScreen.main.bounds.height / 15)
+                              height: UIScreen.main.bounds.height / 15,
+                              opacity: 1)
                     }
                     .disabled(palabraViewModel.coloresTeclas[index] == Color.gray)
                 }
@@ -55,10 +55,12 @@ struct Teclado: View {
                             palabraViewModel.palabra[4] = palabraViewModel.letras[index]
                         }
                     } label: {
-                        Tecla(text: palabraViewModel.letras[index],
+                        Tecla(palabraViewModel: palabraViewModel,
+                              text: palabraViewModel.letras[index],
                               color: palabraViewModel.coloresTeclas[index],
                               width: UIScreen.main.bounds.width / 11,
-                              height: UIScreen.main.bounds.height / 15)
+                              height: UIScreen.main.bounds.height / 15,
+                              opacity: 1)
                     }
                     .disabled(palabraViewModel.coloresTeclas[index] == Color.gray)
                 }
@@ -85,10 +87,12 @@ struct Teclado: View {
                             palabraViewModel.palabra[4] = palabraViewModel.letras[index]
                         }
                     } label: {
-                        Tecla(text: palabraViewModel.letras[index],
+                        Tecla(palabraViewModel: palabraViewModel,
+                              text: palabraViewModel.letras[index],
                               color: palabraViewModel.coloresTeclas[index],
                               width: UIScreen.main.bounds.width / 11,
-                              height: UIScreen.main.bounds.height / 15)
+                              height: UIScreen.main.bounds.height / 15,
+                              opacity: 1)
                     }
                     .disabled(palabraViewModel.coloresTeclas[index] == Color.gray)
                 }
@@ -102,24 +106,14 @@ struct Teclado: View {
                         .foregroundColor(Color("ColorPrincipalBlanco"))
                         .background(Color("ColorPrincipalNegro"))
                         .cornerRadius(5)
+                        .animation(palabraViewModel.animation)
                 }
-                .animation(animation)
             }
             
             Button {
                 
                 if palabraViewModel.CheckWinner() == true {
-                    palabraViewModel.showWinner.toggle()
-                    palabraViewModel.coloresFondo = [Color.green, Color.green, Color.green, Color.green, Color.green]
-                    palabraViewModel.coloresLetra = [Color("ColorBlanco"), Color("ColorBlanco"), Color("ColorBlanco"), Color("ColorBlanco"), Color("ColorBlanco")]
-                    
-                    self.palabraViewModel.timer = Timer.scheduledTimer(withTimeInterval: 0.2, repeats: true) { index in
-                        if palabraViewModel.timerCounter < 8 {
-                            palabraViewModel.timerCounter += 1
-                        } else {
-                            palabraViewModel.timerCounter = 0
-                        }
-                    }
+                    palabraViewModel.YouAreAWinner()
                 } else {
                     if palabraViewModel.intentos.count < palabraViewModel.numeroDeIntentos {
                         palabraViewModel.CheckGray()
@@ -130,19 +124,17 @@ struct Teclado: View {
                         palabraViewModel.coloresFondo = [Color("ColorPrincipalNegro"), Color("ColorPrincipalNegro"), Color("ColorPrincipalNegro"), Color("ColorPrincipalNegro"), Color("ColorPrincipalNegro")]
                         palabraViewModel.encontradas = [false, false, false, false, false]
                     } else {
-                        palabraViewModel.showWinner.toggle()
-                        palabraViewModel.coloresFondo = [Color.red, Color.red, Color.red, Color.red, Color.red]
-                        palabraViewModel.coloresLetra = [Color("ColorBlanco"), Color("ColorBlanco"), Color("ColorBlanco"), Color("ColorBlanco"), Color("ColorBlanco")]
+                        palabraViewModel.YouAreALoser()
                     }
                 }
             } label: {
-                Tecla(text: "INTRO",
+                Tecla(palabraViewModel: palabraViewModel,
+                      text: "INTRO",
                       color: Color("ColorPrincipalNegro"),
                       width: UIScreen.main.bounds.width / 1.025,
-                      height: UIScreen.main.bounds.height / 15)
-                    .opacity(palabraViewModel.CheckValidIntro() ? 1.0 : 0.6)
+                      height: UIScreen.main.bounds.height / 15,
+                      opacity: palabraViewModel.CheckValidIntro() ? 1.0 : 0.6)
             }
-            .animation(animation)
             .disabled(!palabraViewModel.CheckValidIntro())
         }
         .foregroundColor(Color("ColorPrincipalBlanco"))
@@ -156,6 +148,5 @@ struct Teclado: View {
 struct Teclado_Previews: PreviewProvider {
     static var previews: some View {
         Juego()
-            
     }
 }

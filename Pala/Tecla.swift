@@ -9,10 +9,13 @@ import SwiftUI
 
 struct Tecla: View {
     
+    @ObservedObject var palabraViewModel: PalabrasModelView
+    
     let text: String
     let color: Color
     let width: Double
     let height: Double
+    let opacity: Double
     
     var body: some View {
         Text(text)
@@ -21,15 +24,13 @@ struct Tecla: View {
             .foregroundColor(Color("ColorPrincipalBlanco"))
             .background(color)
             .cornerRadius(5)
-            .animation(.spring(response: 0.5, dampingFraction: 0.7))
+            .opacity(opacity)
+            .animation(palabraViewModel.animation)
     }
 }
 
 struct Tecla_Previews: PreviewProvider {
     static var previews: some View {
-        Tecla(text: "A",
-              color: Color.red,
-              width: UIScreen.main.bounds.width / 11,
-              height: UIScreen.main.bounds.height / 13)
+        Juego()
     }
 }

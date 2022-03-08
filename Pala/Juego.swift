@@ -55,6 +55,8 @@ class PalabrasModelView: ObservableObject {
     @Published var timer: Timer?
     @Published var timerCounter = 0
     
+    @Published var animation = Animation.spring(response: 0.7, dampingFraction: 0.7)
+    
     init() {
         SelectWord()
         ColorKeyboardWhite()
@@ -98,6 +100,26 @@ class PalabrasModelView: ObservableObject {
         } else {
             return false
         }
+    }
+    
+    func YouAreAWinner() {
+        showWinner.toggle()
+        coloresFondo = [Color.green, Color.green, Color.green, Color.green, Color.green]
+        coloresLetra = [Color("ColorBlanco"), Color("ColorBlanco"), Color("ColorBlanco"), Color("ColorBlanco"), Color("ColorBlanco")]
+        
+        self.timer = Timer.scheduledTimer(withTimeInterval: 0.2, repeats: true) { index in
+            if self.timerCounter < 8 {
+                self.timerCounter += 1
+            } else {
+                self.timerCounter = 0
+            }
+        }
+    }
+    
+    func YouAreALoser() {
+        showWinner.toggle()
+        coloresFondo = [Color.red, Color.red, Color.red, Color.red, Color.red]
+        coloresLetra = [Color("ColorBlanco"), Color("ColorBlanco"), Color("ColorBlanco"), Color("ColorBlanco"), Color("ColorBlanco")]
     }
     
     func CheckGray() {
@@ -253,47 +275,47 @@ struct Juego: View {
                                    colorLetra: index.done ? index.colorLetra1 : palabraViewModel.coloresLetra[0],
                                    colorFondo: index.done ? index.colorFondo1 : palabraViewModel.coloresFondo[0],
                                    width: palabraViewModel.anchoCubito)
-//                                .animation(.spring(response: 0.7, dampingFraction: 0.7))
+//                                .animation(palabraViewModel.animation)
                                 .offset(y: palabraViewModel.timerCounter == 1 ? -15 : 0)
                             Cubito(text: index.done ? index.letra2 : palabraViewModel.palabra[1],
                                    colorLetra: index.done ? index.colorLetra2 : palabraViewModel.coloresLetra[1],
                                    colorFondo: index.done ? index.colorFondo2 : palabraViewModel.coloresFondo[1],
                                    width: palabraViewModel.anchoCubito)
-//                                .animation(.spring(response: 0.7, dampingFraction: 0.7).delay(0.05))
+//                                .animation(palabraViewModel.animation).delay(0.05))
                                 .offset(y: palabraViewModel.timerCounter == 2 ? -15 : 0)
                             Cubito(text: index.done ? index.letra3 : palabraViewModel.palabra[2],
                                    colorLetra: index.done ? index.colorLetra3 : palabraViewModel.coloresLetra[2],
                                    colorFondo: index.done ? index.colorFondo3 : palabraViewModel.coloresFondo[2],
                                    width: palabraViewModel.anchoCubito)
-//                                .animation(.spring(response: 0.7, dampingFraction: 0.7).delay(0.1))
+//                                .animation(palabraViewModel.animation).delay(0.1))
                                 .offset(y: palabraViewModel.timerCounter == 3 ? -15 : 0)
                             Cubito(text: index.done ? index.letra4 : palabraViewModel.palabra[3],
                                    colorLetra: index.done ? index.colorLetra4 : palabraViewModel.coloresLetra[3],
                                    colorFondo: index.done ? index.colorFondo4 : palabraViewModel.coloresFondo[3],
                                    width: palabraViewModel.anchoCubito)
-//                                .animation(.spring(response: 0.7, dampingFraction: 0.7).delay(0.15))
+//                                .animation(palabraViewModel.animation).delay(0.15))
                                 .offset(y: palabraViewModel.timerCounter == 4 ? -15 : 0)
                             Cubito(text: index.done ? index.letra5 : palabraViewModel.palabra[4],
                                    colorLetra: index.done ? index.colorLetra5 : palabraViewModel.coloresLetra[4],
                                    colorFondo: index.done ? index.colorFondo5 : palabraViewModel.coloresFondo[4],
                                    width: palabraViewModel.anchoCubito)
-//                                .animation(.spring(response: 0.7, dampingFraction: 0.7).delay(0.2))
                                 .offset(y: palabraViewModel.timerCounter == 5 ? -15 : 0)
+//                                .animation(palabraViewModel.animation.delay(0.2))
                         }
-                        .animation(.spring(response: 0.7, dampingFraction: 0.7))
+                        .animation(palabraViewModel.animation)
                         .transition(.asymmetric(insertion: .move(edge: .bottom).combined(with: .opacity), removal: .offset(y: -UIScreen.main.bounds.height * 0.7)))
                     }
                 }
                 
                 Teclado(palabraViewModel: palabraViewModel)
             }
-            .transition(.opacity)
+            .transition(.move(edge: .bottom))
             
             VStack {
                 if palabraViewModel.showWinner == true {
-                    
+
                     Spacer()
-                    
+
                     RoundPopUp(palabraViewModel: palabraViewModel)
                 }
             }
