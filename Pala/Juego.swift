@@ -9,22 +9,22 @@ import SwiftUI
 
 struct Intento: Identifiable {
     let id: String = UUID().uuidString
-    @State var letra1: String
-    @State var colorFondo1: Color
-    @State var colorLetra1: Color
-    @State var letra2: String
-    @State var colorFondo2: Color
-    @State var colorLetra2: Color
-    @State var letra3: String
-    @State var colorFondo3: Color
-    @State var colorLetra3: Color
-    @State var letra4: String
-    @State var colorFondo4: Color
-    @State var colorLetra4: Color
-    @State var letra5: String
-    @State var colorFondo5: Color
-    @State var colorLetra5: Color
-    @State var done: Bool
+    let letra1: String
+    let colorFondo1: Color
+    let colorLetra1: Color
+    let letra2: String
+    let colorFondo2: Color
+    let colorLetra2: Color
+    let letra3: String
+    let colorFondo3: Color
+    let colorLetra3: Color
+    let letra4: String
+    let colorFondo4: Color
+    let colorLetra4: Color
+    let letra5: String
+    let colorFondo5: Color
+    let colorLetra5: Color
+    let done: Bool
 }
 
 //MARK: CLASE

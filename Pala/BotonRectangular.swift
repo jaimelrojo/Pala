@@ -16,15 +16,30 @@ struct BotonRectangular: View {
     let height: Double
     
     var body: some View {
-        Text(texto)
-            .foregroundColor(colorLetra)
-            .font(.system(size: UIScreen.main.bounds.height / 40,
-                          weight: .light,
-                          design: .monospaced))
+        
+        Rectangle()
+            .foregroundColor(colorFondo)
+            .cornerRadius(25)
+            .overlay(
+                Text(texto)
+                    .foregroundColor(colorLetra)
+                    .font(.system(size: UIScreen.main.bounds.height / 40,
+                                  weight: .light,
+                                  design: .monospaced))
+            )
             .frame(width: UIScreen.main.bounds.width * width,
                    height: UIScreen.main.bounds.height * height)
-            .background(colorFondo)
-            .cornerRadius(25)
+        
+        
+//        Text(texto)
+//            .foregroundColor(colorLetra)
+//            .font(.system(size: UIScreen.main.bounds.height / 40,
+//                          weight: .light,
+//                          design: .monospaced))
+//            .frame(width: UIScreen.main.bounds.width * width,
+//                   height: UIScreen.main.bounds.height * height)
+//            .background(colorFondo)
+//            .cornerRadius(25)
     }
 }
 

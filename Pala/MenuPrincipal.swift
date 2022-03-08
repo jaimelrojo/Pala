@@ -7,18 +7,23 @@
 
 import SwiftUI
 
+class MenuModelView: ObservableObject {
+    
+    @Published var mostrarMenu1: Bool = false
+    @Published var alturaMenu1: Double = 0.08
+    @Published var anchoMenu1: Double = 0.88
+    @Published var juegoIniciado: Bool = false
+    
+    let animation: Animation = .spring(response: 0.7, dampingFraction: 0.8)
+}
+
 struct MenuPrincipal: View {
     
+    @StateObject var menuViewModel: MenuModelView = MenuModelView()
     @StateObject var palabraViewModel: PalabrasModelView = PalabrasModelView()
 //    @ObservedObject var palabraViewModel: PalabrasModelView
     
-    @State var preGameMenu: Bool = false
-    @State var preGameMenuWidth: Double = 0.88
-    @State var preGameMenuHeight: Double = 0.08
-    @State var isPlaying: Bool = false
     @State var textoBoton = "Comenzar"
-    
-    var animation: Animation = .spring(response: 0.7, dampingFraction: 0.8)
     
     var body: some View {
         
@@ -28,10 +33,10 @@ struct MenuPrincipal: View {
             
             Color("ColorPrincipalNegro")
                 .onTapGesture {
-                    if preGameMenu == true {
-                        preGameMenu = false
-                        preGameMenuWidth = 0.88
-                        preGameMenuHeight = 0.08
+                    if menuViewModel.mostrarMenu1 == true {
+                        menuViewModel.mostrarMenu1 = false
+                        menuViewModel.anchoMenu1 = 0.88
+                        menuViewModel.alturaMenu1 = 0.08
                         textoBoton = "Comenzar"
                     }
                 }
@@ -41,7 +46,7 @@ struct MenuPrincipal: View {
             
             VStack {
                 
-                if isPlaying == false {
+                if menuViewModel.juegoIniciado == false {
                     Spacer()
                     
                     Logo()
@@ -50,34 +55,32 @@ struct MenuPrincipal: View {
                 }
                 
                 Button {
-                    preGameMenu = true
-                    preGameMenuWidth = 1
-                    preGameMenuHeight = 0.58
+                    menuViewModel.mostrarMenu1 = true
+                    menuViewModel.anchoMenu1 = 1
+                    menuViewModel.alturaMenu1 = 0.58
                     textoBoton = ""
                 } label: {
                     BotonRectangular(texto: textoBoton,
                                      colorFondo: Color("ColorPrincipalBlanco"),
                                      colorLetra: Color("ColorPrincipalNegro"),
-                                     width: preGameMenuWidth,
-                                     height: preGameMenuHeight)
+                                     width: menuViewModel.anchoMenu1,
+                                     height: menuViewModel.alturaMenu1)
                 }
-                .padding(.bottom, preGameMenu ? 0 : UIScreen.main.bounds.width * 0.09)
-                .disabled(preGameMenu)
-                .disabled(isPlaying)
-                .animation(animation)
+                .padding(.bottom, menuViewModel.mostrarMenu1 ? 0 : UIScreen.main.bounds.width * 0.09)
+                .disabled(menuViewModel.mostrarMenu1)
+                .disabled(menuViewModel.juegoIniciado)
+                .animation(menuViewModel.animation)
             }
             .edgesIgnoringSafeArea(.bottom)
             
-            if preGameMenu == true {
-                MenuDesplegable(preGameMenuHeight: $preGameMenuHeight,
-                                isPlaying: $isPlaying,
-                                preGameMenu: $preGameMenu)
+            if menuViewModel.mostrarMenu1 == true {
+                MenuDesplegable(menuViewModel: menuViewModel)
             }
             
-            if isPlaying == true {
+            if menuViewModel.juegoIniciado == true {
                 ZStack {
                     Juego(palabraViewModel: palabraViewModel)
-                        .animation(animation)
+                        .animation(menuViewModel.animation)
 //                        .frame(height: UIScreen.main.bounds.height * 0.89)
                     
                     VStack {
@@ -100,5 +103,6 @@ struct MenuPrincipal: View {
 struct MenuPrincipal_Previews: PreviewProvider {
     static var previews: some View {
         MenuPrincipal()
+            .preferredColorScheme(.dark)
     }
 }
