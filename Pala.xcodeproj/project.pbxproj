@@ -7,18 +7,47 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EE1ED90F27D36B1700E0EC25 /* BotonRectangular.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE1ED90E27D36B1700E0EC25 /* BotonRectangular.swift */; };
 		EE4E36A427C3A9A600B60513 /* PalaApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4E36A327C3A9A600B60513 /* PalaApp.swift */; };
-		EE4E36A627C3A9A600B60513 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4E36A527C3A9A600B60513 /* ContentView.swift */; };
+		EE4E36A627C3A9A600B60513 /* Juego.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4E36A527C3A9A600B60513 /* Juego.swift */; };
 		EE4E36A827C3A9A700B60513 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EE4E36A727C3A9A700B60513 /* Assets.xcassets */; };
 		EE4E36AB27C3A9A700B60513 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EE4E36AA27C3A9A700B60513 /* Preview Assets.xcassets */; };
+		EE8DAEAB27C3FFA200204D09 /* Teclado.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE8DAEAA27C3FFA200204D09 /* Teclado.swift */; };
+		EE8DAEAD27C4162C00204D09 /* MenuPrincipal.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE8DAEAC27C4162C00204D09 /* MenuPrincipal.swift */; };
+		EE8DAEAF27C41B2F00204D09 /* Logo.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE8DAEAE27C41B2F00204D09 /* Logo.swift */; };
+		EE8DAEB127C41C1100204D09 /* MenuDesplegable.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE8DAEB027C41C1100204D09 /* MenuDesplegable.swift */; };
+		EEDE0DD527C5AD2600DF9AFE /* Cubito.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEDE0DD427C5AD2600DF9AFE /* Cubito.swift */; };
+		EEE4344027CEBF1E00509DF2 /* Tecla.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEE4343F27CEBF1E00509DF2 /* Tecla.swift */; };
+		EEEA7DC627C8492400FCECD3 /* RoundPopUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEEA7DC527C8492400FCECD3 /* RoundPopUp.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		EE8DAEA527C3FEFA00204D09 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		EE1ED90E27D36B1700E0EC25 /* BotonRectangular.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BotonRectangular.swift; sourceTree = "<group>"; };
 		EE4E36A027C3A9A600B60513 /* Pala.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pala.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EE4E36A327C3A9A600B60513 /* PalaApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PalaApp.swift; sourceTree = "<group>"; };
-		EE4E36A527C3A9A600B60513 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		EE4E36A527C3A9A600B60513 /* Juego.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Juego.swift; sourceTree = "<group>"; };
 		EE4E36A727C3A9A700B60513 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EE4E36AA27C3A9A700B60513 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		EE8DAEAA27C3FFA200204D09 /* Teclado.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Teclado.swift; sourceTree = "<group>"; };
+		EE8DAEAC27C4162C00204D09 /* MenuPrincipal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuPrincipal.swift; sourceTree = "<group>"; };
+		EE8DAEAE27C41B2F00204D09 /* Logo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logo.swift; sourceTree = "<group>"; };
+		EE8DAEB027C41C1100204D09 /* MenuDesplegable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuDesplegable.swift; sourceTree = "<group>"; };
+		EEDE0DD427C5AD2600DF9AFE /* Cubito.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cubito.swift; sourceTree = "<group>"; };
+		EEE4343F27CEBF1E00509DF2 /* Tecla.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tecla.swift; sourceTree = "<group>"; };
+		EEEA7DC527C8492400FCECD3 /* RoundPopUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundPopUp.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,7 +81,15 @@
 			isa = PBXGroup;
 			children = (
 				EE4E36A327C3A9A600B60513 /* PalaApp.swift */,
-				EE4E36A527C3A9A600B60513 /* ContentView.swift */,
+				EE8DAEAC27C4162C00204D09 /* MenuPrincipal.swift */,
+				EE4E36A527C3A9A600B60513 /* Juego.swift */,
+				EE8DAEAA27C3FFA200204D09 /* Teclado.swift */,
+				EE8DAEAE27C41B2F00204D09 /* Logo.swift */,
+				EE8DAEB027C41C1100204D09 /* MenuDesplegable.swift */,
+				EEEA7DC527C8492400FCECD3 /* RoundPopUp.swift */,
+				EEDE0DD427C5AD2600DF9AFE /* Cubito.swift */,
+				EEE4343F27CEBF1E00509DF2 /* Tecla.swift */,
+				EE1ED90E27D36B1700E0EC25 /* BotonRectangular.swift */,
 				EE4E36A727C3A9A700B60513 /* Assets.xcassets */,
 				EE4E36A927C3A9A700B60513 /* Preview Content */,
 			);
@@ -77,6 +114,7 @@
 				EE4E369C27C3A9A600B60513 /* Sources */,
 				EE4E369D27C3A9A600B60513 /* Frameworks */,
 				EE4E369E27C3A9A600B60513 /* Resources */,
+				EE8DAEA527C3FEFA00204D09 /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
@@ -137,7 +175,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EE4E36A627C3A9A600B60513 /* ContentView.swift in Sources */,
+				EE4E36A627C3A9A600B60513 /* Juego.swift in Sources */,
+				EE8DAEAF27C41B2F00204D09 /* Logo.swift in Sources */,
+				EE8DAEAD27C4162C00204D09 /* MenuPrincipal.swift in Sources */,
+				EEEA7DC627C8492400FCECD3 /* RoundPopUp.swift in Sources */,
+				EEE4344027CEBF1E00509DF2 /* Tecla.swift in Sources */,
+				EE8DAEB127C41C1100204D09 /* MenuDesplegable.swift in Sources */,
+				EEDE0DD527C5AD2600DF9AFE /* Cubito.swift in Sources */,
+				EE1ED90F27D36B1700E0EC25 /* BotonRectangular.swift in Sources */,
+				EE8DAEAB27C3FFA200204D09 /* Teclado.swift in Sources */,
 				EE4E36A427C3A9A600B60513 /* PalaApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -196,7 +242,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -251,7 +297,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -275,8 +321,9 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -286,7 +333,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -304,8 +351,9 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -315,7 +363,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
