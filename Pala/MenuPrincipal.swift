@@ -75,7 +75,7 @@ struct MenuPrincipal: View {
             .edgesIgnoringSafeArea(.bottom)
             
             if menuViewModel.mostrarMenu1 == true {
-                MenuDesplegable(menuViewModel: menuViewModel)
+                MenuDesplegable(menuViewModel: menuViewModel, palabraViewModel: palabraViewModel)
             }
             
             if menuViewModel.juegoIniciado == true {

@@ -13,7 +13,8 @@ struct RoundPopUp: View {
     
     var body: some View {
         Rectangle()
-            .foregroundColor(palabraViewModel.CheckWinner() ? .green : .red)
+//            .foregroundColor(palabraViewModel.CheckWinner() ? .green : .red)
+            .foregroundColor(Color("ColorPrincipalNegro"))
             .overlay(
                 VStack {
                     
@@ -21,14 +22,14 @@ struct RoundPopUp: View {
                     
                     if palabraViewModel.CheckWinner() == true {
                         Text("Ganador")
-                            .foregroundColor(Color("ColorBlanco"))
+                            .foregroundColor(Color("ColorPrincipalBlanco"))
                             .font(.system(size: UIScreen.main.bounds.height / 28,
                                           weight: .light,
                                           design: .monospaced))
                             .animation(.spring(response: 0.6, dampingFraction: 0.8))
                     } else {
                         Text("Perdedor")
-                            .foregroundColor(Color("ColorBlanco"))
+                            .foregroundColor(Color("ColorPrincipalBlanco"))
                             .font(.system(size: UIScreen.main.bounds.height / 28,
                                           weight: .light,
                                           design: .monospaced))
@@ -58,5 +59,6 @@ struct RoundPopUp: View {
 struct RoundPopUp_Previews: PreviewProvider {
     static var previews: some View {
         Juego()
+            .preferredColorScheme(.dark)
     }
 }

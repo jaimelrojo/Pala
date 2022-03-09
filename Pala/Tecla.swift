@@ -12,7 +12,8 @@ struct Tecla: View {
     @ObservedObject var palabraViewModel: PalabrasModelView
     
     let text: String
-    let color: Color
+    let colorFondo: Color
+    let colorLetra: Color
     let width: Double
     let height: Double
     let opacity: Double
@@ -21,8 +22,8 @@ struct Tecla: View {
         Text(text)
             .frame(width: width,
                    height: height)
-            .foregroundColor(Color("ColorPrincipalBlanco"))
-            .background(color)
+            .foregroundColor(colorLetra)
+            .background(colorFondo)
             .cornerRadius(5)
             .opacity(opacity)
             .animation(palabraViewModel.animation)

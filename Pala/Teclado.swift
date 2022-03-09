@@ -31,7 +31,8 @@ struct Teclado: View {
                     } label: {
                         Tecla(palabraViewModel: palabraViewModel,
                               text: palabraViewModel.letras[index],
-                              color: palabraViewModel.coloresTeclas[index],
+                              colorFondo: palabraViewModel.coloresTeclas[index],
+                              colorLetra: palabraViewModel.coloresTeclasLetras[index],
                               width: UIScreen.main.bounds.width / 11,
                               height: UIScreen.main.bounds.height / 15,
                               opacity: 1)
@@ -57,7 +58,8 @@ struct Teclado: View {
                     } label: {
                         Tecla(palabraViewModel: palabraViewModel,
                               text: palabraViewModel.letras[index],
-                              color: palabraViewModel.coloresTeclas[index],
+                              colorFondo: palabraViewModel.coloresTeclas[index],
+                              colorLetra: palabraViewModel.coloresTeclasLetras[index],
                               width: UIScreen.main.bounds.width / 11,
                               height: UIScreen.main.bounds.height / 15,
                               opacity: 1)
@@ -89,7 +91,8 @@ struct Teclado: View {
                     } label: {
                         Tecla(palabraViewModel: palabraViewModel,
                               text: palabraViewModel.letras[index],
-                              color: palabraViewModel.coloresTeclas[index],
+                              colorFondo: palabraViewModel.coloresTeclas[index],
+                              colorLetra: palabraViewModel.coloresTeclasLetras[index],
                               width: UIScreen.main.bounds.width / 11,
                               height: UIScreen.main.bounds.height / 15,
                               opacity: 1)
@@ -130,7 +133,8 @@ struct Teclado: View {
             } label: {
                 Tecla(palabraViewModel: palabraViewModel,
                       text: "INTRO",
-                      color: Color("ColorPrincipalNegro"),
+                      colorFondo: Color("ColorPrincipalNegro"),
+                      colorLetra: Color("ColorPrincipalBlanco"),
                       width: UIScreen.main.bounds.width / 1.025,
                       height: UIScreen.main.bounds.height / 15,
                       opacity: palabraViewModel.CheckValidIntro() ? 1.0 : 0.6)

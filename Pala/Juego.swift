@@ -31,11 +31,18 @@ struct Intento: Identifiable {
 
 class PalabrasModelView: ObservableObject {
     
+    enum Dificultades {
+        case normal
+        case dificil
+        case extremo
+    }
+    
     var diccionario: [String] = ["CLIMA", "CALOR", "COMER", "SUEÑO", "CORRE", "SALIR", "HUMOR", "NEGRO", "DURAR", "BARRA", "BUQUE", "AUDIO", "PUNTO", "VIDEO", "FUEGO", "VIRAL", "GUSTO", "TACTO", "VISTA", "TEXAS", "GORRA", "REZAR", "HUESO", "BUSTO", "SUSTO", "MUSEO", "HUEVO", "BUSCO", "JUEGO", "BARES", "NARIZ", "AUTOR", "COLOR", "TELAS", "TEJAS", "TEMAS", "MOVER", "SISMO", "MIXTO", "SUMAR", "RESTA", "DOBLE", "LIBRA", "VIRGO", "TOREO", "LIBRO", "AYUDA", "PANDA", "PERRO", "TECLA", "NUEVO", "VIEJO"]
     
-    @State var numeroDeLetras = 5
+//    @State var numeroDeLetras = 5
     var letras: [String] = "QWERTYUIOPASDFGHJKLÑZXCVBNM".map { String($0) }
     var coloresTeclas: [Color] = []
+    var coloresTeclasLetras: [Color] = []
     @State var anchoCubito: Double = UIScreen.main.bounds.width / 5.8
     
     @Published var diccionarioRevuelto: [String] = [""]
@@ -55,6 +62,10 @@ class PalabrasModelView: ObservableObject {
     @Published var timer: Timer?
     @Published var timerCounter = 0
     
+    @Published var scoreActual = 0
+//    @Published var highScore = 0
+    @AppStorage("highScore") var highScore: Int = 0
+    
     @Published var animation = Animation.spring(response: 0.7, dampingFraction: 0.7)
     
     init() {
@@ -62,10 +73,22 @@ class PalabrasModelView: ObservableObject {
         ColorKeyboardWhite()
     }
     
+//    func PickDificulty(on dificultad: Dificultades) {
+//        switch dificultad {
+//        case .normal:
+//            break
+//        case .dificil:
+//            break
+//        case .extremo:
+//            break
+//        }
+//    }
+    
     func ColorKeyboardWhite() {
         coloresTeclas.removeAll()
         for _ in letras.indices {
             coloresTeclas.append(Color("ColorPrincipalNegro"))
+            coloresTeclasLetras.append(Color("ColorPrincipalBlanco"))
         }
     }
     
@@ -103,8 +126,9 @@ class PalabrasModelView: ObservableObject {
     }
     
     func YouAreAWinner() {
+        scoreActual += 1
         showWinner.toggle()
-        coloresFondo = [Color.green, Color.green, Color.green, Color.green, Color.green]
+        coloresFondo = [Color("ColorVerde"), Color("ColorVerde"), Color("ColorVerde"), Color("ColorVerde"), Color("ColorVerde")]
         coloresLetra = [Color("ColorBlanco"), Color("ColorBlanco"), Color("ColorBlanco"), Color("ColorBlanco"), Color("ColorBlanco")]
         
         self.timer = Timer.scheduledTimer(withTimeInterval: 0.2, repeats: true) { index in
@@ -117,8 +141,9 @@ class PalabrasModelView: ObservableObject {
     }
     
     func YouAreALoser() {
+        scoreActual = 0
         showWinner.toggle()
-        coloresFondo = [Color.red, Color.red, Color.red, Color.red, Color.red]
+        coloresFondo = [Color("ColorRojo"), Color("ColorRojo"), Color("ColorRojo"), Color("ColorRojo"), Color("ColorRojo")]
         coloresLetra = [Color("ColorBlanco"), Color("ColorBlanco"), Color("ColorBlanco"), Color("ColorBlanco"), Color("ColorBlanco")]
     }
     
@@ -148,7 +173,7 @@ class PalabrasModelView: ObservableObject {
         
         for index in coloresFondo.indices {
             if palabra[index] == palabraSeleccionadaDividida[index] {
-                coloresFondo[index] = Color.green
+                coloresFondo[index] = Color("ColorVerde")
                 encontradas[index] = true
                 targetValues.append(palabra[index])
             }
@@ -157,7 +182,7 @@ class PalabrasModelView: ObservableObject {
         for index2 in coloresTeclas.indices {
             for index3 in targetValues.indices {
                 if letras[index2] == targetValues[index3] {
-                    coloresTeclas[index2] = Color.green
+                    coloresTeclas[index2] = Color("ColorVerde")
                 }
             }
         }
@@ -169,12 +194,11 @@ class PalabrasModelView: ObservableObject {
                 if palabra[index] != palabraSeleccionadaDividida[index] && palabra[index] == palabraSeleccionadaDividida[index2] {
                     
                     if encontradas[index2] == false  {
-                        coloresFondo[index] = Color.yellow
+                        coloresFondo[index] = Color("ColorAmarillo")
                         encontradas[index2] = true
                     } else {
                         coloresFondo[index] = Color.gray
                     }
-                    
                 }
             }
         }
@@ -195,7 +219,7 @@ class PalabrasModelView: ObservableObject {
     }
     
     func AppendIntento() {
-        intentos.insert(.init(letra1: palabra[0], colorFondo1: coloresFondo[0], colorLetra1: Color("ColorNegro"), letra2: palabra[1], colorFondo2: coloresFondo[1], colorLetra2: Color("ColorNegro"), letra3: palabra[2], colorFondo3: coloresFondo[2], colorLetra3: Color("ColorNegro"), letra4: palabra[3], colorFondo4: coloresFondo[3], colorLetra4: Color("ColorNegro"), letra5: palabra[4], colorFondo5: coloresFondo[4], colorLetra5: Color("ColorNegro"), done: true), at: (intentos.count - 1))
+        intentos.insert(.init(letra1: palabra[0], colorFondo1: coloresFondo[0], colorLetra1: Color("ColorBlanco"), letra2: palabra[1], colorFondo2: coloresFondo[1], colorLetra2: Color("ColorBlanco"), letra3: palabra[2], colorFondo3: coloresFondo[2], colorLetra3: Color("ColorBlanco"), letra4: palabra[3], colorFondo4: coloresFondo[3], colorLetra4: Color("ColorBlanco"), letra5: palabra[4], colorFondo5: coloresFondo[4], colorLetra5: Color("ColorBlanco"), done: true), at: (intentos.count - 1))
         palabra = ["", "", "", "", ""]
     }
     
@@ -233,6 +257,9 @@ struct Juego: View {
         
         ZStack {
             
+            Color("ColorPrincipalBlanco")
+                .ignoresSafeArea()
+            
             VStack(spacing: 18) {
                 
                 VStack {
@@ -242,13 +269,13 @@ struct Juego: View {
 //                        .foregroundColor(Color("ColorNegro"))
 //                    Text("\(palabraViewModel.diccionarioRevuelto[2])")
 //                        .foregroundColor(Color("ColorNegro"))
-                    Text("\(palabraViewModel.diccionarioRevuelto[palabraViewModel.contador])")
-                        .foregroundColor(.red)
+                    Text("\(palabraViewModel.scoreActual)")
+                        .foregroundColor(Color("ColorRojo"))
 
                     HStack {
                         ForEach(0..<5) { index in
                             Text("\(palabraViewModel.palabraSeleccionadaDividida[index])")
-                                .foregroundColor(.white)
+                                .foregroundColor(Color("ColorPrincipalNegro"))
                         }
                     }
                 }
@@ -327,5 +354,6 @@ struct Juego: View {
 struct Juego_Previews: PreviewProvider {
     static var previews: some View {
         Juego()
+            .preferredColorScheme(.dark)
     }
 }

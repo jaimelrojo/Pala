@@ -10,6 +10,7 @@ import SwiftUI
 struct MenuDesplegable: View {
     
     @ObservedObject var menuViewModel: MenuModelView
+    @ObservedObject var palabraViewModel: PalabrasModelView
     
 //    var animation: Animation = .spring(response: 0.7, dampingFraction: 0.8)
 //    @State var dificultades: [String] = ["Normal", "Dificil", "Extremo"]
@@ -31,8 +32,8 @@ struct MenuDesplegable: View {
             VStack {
                 ForEach(menuViewModel.dificultades.indices) { index in
                     Button {
-                        colorDificultades = [Color("ColorPrincipalNegro"), Color("ColorPrincipalNegro"), Color("ColorPrincipalNegro")]
-                        colorDificultades[index] = Color.green
+//                        colorDificultades = [Color("ColorPrincipalNegro"), Color("ColorPrincipalNegro"), Color("ColorPrincipalNegro")]
+//                        colorDificultades[index] = Color.green
                     } label: {
                         BotonRectangular(texto: "\(menuViewModel.dificultades[index])",
                                          colorFondo: colorDificultades[index],
