@@ -119,8 +119,8 @@ struct Teclado: View {
                     palabraViewModel.YouAreAWinner()
                 } else {
                     if palabraViewModel.intentos.count < palabraViewModel.numeroDeIntentos {
-                        palabraViewModel.CheckGray()
                         palabraViewModel.CheckGreen()
+                        palabraViewModel.CheckGray()
                         palabraViewModel.CheckYellow()
                         
                         palabraViewModel.AppendIntento()

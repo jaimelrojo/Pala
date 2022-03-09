@@ -86,6 +86,7 @@ class PalabrasModelView: ObservableObject {
     
     func ColorKeyboardWhite() {
         coloresTeclas.removeAll()
+        coloresTeclasLetras.removeAll()
         for _ in letras.indices {
             coloresTeclas.append(Color("ColorPrincipalNegro"))
             coloresTeclasLetras.append(Color("ColorPrincipalBlanco"))
@@ -127,6 +128,11 @@ class PalabrasModelView: ObservableObject {
     
     func YouAreAWinner() {
         scoreActual += 1
+        
+        if highScore < scoreActual {
+            highScore = scoreActual
+        }
+        
         showWinner.toggle()
         coloresFondo = [Color("ColorVerde"), Color("ColorVerde"), Color("ColorVerde"), Color("ColorVerde"), Color("ColorVerde")]
         coloresLetra = [Color("ColorBlanco"), Color("ColorBlanco"), Color("ColorBlanco"), Color("ColorBlanco"), Color("ColorBlanco")]
@@ -162,6 +168,7 @@ class PalabrasModelView: ObservableObject {
             for index3 in targetValues.indices {
                 if letras[index2] == targetValues[index3] {
                     coloresTeclas[index2] = Color.gray
+                    coloresTeclasLetras[index2] = Color("ColorBlanco")
                 }
             }
         }
@@ -183,6 +190,7 @@ class PalabrasModelView: ObservableObject {
             for index3 in targetValues.indices {
                 if letras[index2] == targetValues[index3] {
                     coloresTeclas[index2] = Color("ColorVerde")
+                    coloresTeclasLetras[index2] = Color("ColorBlanco")
                 }
             }
         }
@@ -193,9 +201,10 @@ class PalabrasModelView: ObservableObject {
             for index2 in palabraSeleccionadaDividida.indices {
                 if palabra[index] != palabraSeleccionadaDividida[index] && palabra[index] == palabraSeleccionadaDividida[index2] {
                     
-                    if encontradas[index2] == false  {
+                    if encontradas[index2] == false {
                         coloresFondo[index] = Color("ColorAmarillo")
                         encontradas[index2] = true
+                        break
                     } else {
                         coloresFondo[index] = Color.gray
                     }
@@ -251,6 +260,8 @@ class PalabrasModelView: ObservableObject {
 struct Juego: View {
     
     @StateObject var palabraViewModel: PalabrasModelView = PalabrasModelView()
+    @State var mostrarPalabraScore: Bool = true
+    @State var anchoScore: Double = 0.55
 //    @ObservedObject var palabraViewModel: PalabrasModelView
     
     var body: some View {
@@ -260,7 +271,39 @@ struct Juego: View {
             Color("ColorPrincipalBlanco")
                 .ignoresSafeArea()
             
-            VStack(spacing: 18) {
+            VStack(spacing: 15) {
+                
+                HStack {
+                    BotonRectangular(texto: mostrarPalabraScore ? "Puntuación: \(palabraViewModel.scoreActual)" : "\(palabraViewModel.scoreActual)",
+                                     colorFondo: Color("ColorPrincipalNegro"),
+                                     colorLetra: Color("ColorPrincipalBlanco"),
+                                     width: anchoScore,
+                                     height: 0.06,
+                                     animation: .spring(response: 0.7, dampingFraction: 0.8))
+                        .onAppear {
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 4) {
+                                    mostrarPalabraScore = false
+                                    anchoScore = 0.20
+                            }
+                        }
+                        .onTapGesture {
+                                mostrarPalabraScore = true
+                                anchoScore = 0.55
+                            
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 4) {
+                                    mostrarPalabraScore = false
+                                    anchoScore = 0.20
+                            }
+                        }
+                    
+//                    BotonRectangular(palabraViewModel: palabraViewModel,
+//                                     texto: "Highscore: \(palabraViewModel.highScore)",
+//                                     colorFondo: Color("ColorPrincipalNegro"),
+//                                     colorLetra: Color("ColorPrincipalBlanco"),
+//                                     width: 0.4,
+//                                     height: 0.06)
+                }
+                .padding(.horizontal)
                 
                 VStack {
 //                    Text("\(palabraViewModel.diccionarioRevuelto[0])")
@@ -269,15 +312,28 @@ struct Juego: View {
 //                        .foregroundColor(Color("ColorNegro"))
 //                    Text("\(palabraViewModel.diccionarioRevuelto[2])")
 //                        .foregroundColor(Color("ColorNegro"))
-                    Text("\(palabraViewModel.scoreActual)")
-                        .foregroundColor(Color("ColorRojo"))
+//                    Text("\(palabraViewModel.scoreActual)")
+//                        .foregroundColor(Color("ColorRojo"))
+//                    Text("\(palabraViewModel.highScore)")
+//                        .foregroundColor(Color("ColorBlanco"))
 
-                    HStack {
-                        ForEach(0..<5) { index in
-                            Text("\(palabraViewModel.palabraSeleccionadaDividida[index])")
-                                .foregroundColor(Color("ColorPrincipalNegro"))
-                        }
-                    }
+//                    HStack {
+//                        ForEach(0..<5) { index in
+//                            Text("\(palabraViewModel.palabraSeleccionadaDividida[index])")
+//                                .foregroundColor(Color("ColorPrincipalNegro"))
+//                        }
+//                    }
+//                    HStack {
+//                        ForEach(0..<5) { index in
+//                            if palabraViewModel.encontradas[index] == false {
+//                                Text("False")
+//                                    .foregroundColor(Color("ColorPrincipalNegro"))
+//                            } else {
+//                                Text("True")
+//                                    .foregroundColor(Color("ColorPrincipalNegro"))
+//                            }
+//                        }
+//                    }
                 }
                 
                 Spacer()
@@ -290,8 +346,10 @@ struct Juego: View {
 //                Button("Cambiar palabra") {
 //                    if palabraViewModel.contador < (palabraViewModel.diccionarioRevuelto.count - 1) {
 //                        palabraViewModel.contador += 1
+//                        palabraViewModel.SelectWord()
 //                    } else {
 //                        palabraViewModel.contador = 0
+//                        palabraViewModel.SelectWord()
 //                    }
 //                }
                 

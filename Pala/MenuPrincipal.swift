@@ -65,7 +65,8 @@ struct MenuPrincipal: View {
                                      colorFondo: Color("ColorPrincipalBlanco"),
                                      colorLetra: Color("ColorPrincipalNegro"),
                                      width: menuViewModel.anchoMenu1,
-                                     height: menuViewModel.alturaMenu1)
+                                     height: menuViewModel.alturaMenu1,
+                                     animation: palabraViewModel.animation)
                 }
                 .padding(.bottom, menuViewModel.mostrarMenu1 ? 0 : UIScreen.main.bounds.width * 0.09)
                 .disabled(menuViewModel.mostrarMenu1)

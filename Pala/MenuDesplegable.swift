@@ -39,7 +39,8 @@ struct MenuDesplegable: View {
                                          colorFondo: colorDificultades[index],
                                          colorLetra: Color("ColorPrincipalBlanco"),
                                          width: 0.88,
-                                         height: 0.06)
+                                         height: 0.06,
+                                         animation: palabraViewModel.animation)
                     }
                     .animation(menuViewModel.animation.delay(Double(index + 1)/10))
                 }
@@ -69,7 +70,12 @@ struct MenuDesplegable: View {
                 menuViewModel.mostrarMenu1 = false
                 menuViewModel.juegoIniciado = true
             } label: {
-                BotonRectangular(texto: "Continuar", colorFondo: Color("ColorPrincipalNegro"), colorLetra: Color("ColorPrincipalBlanco"), width: 0.88, height: 0.08)
+                BotonRectangular(texto: "Continuar",
+                                 colorFondo: Color("ColorPrincipalNegro"),
+                                 colorLetra: Color("ColorPrincipalBlanco"),
+                                 width: 0.88,
+                                 height: 0.08,
+                                 animation: palabraViewModel.animation)
                     .animation(menuViewModel.animation)
 //                Rectangle()
 //                    .cornerRadius(25)

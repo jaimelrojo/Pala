@@ -14,6 +14,7 @@ struct BotonRectangular: View {
     let colorLetra: Color
     let width: Double
     let height: Double
+    let animation: Animation
     
     var body: some View {
         
@@ -26,25 +27,16 @@ struct BotonRectangular: View {
                     .font(.system(size: UIScreen.main.bounds.height / 40,
                                   weight: .light,
                                   design: .monospaced))
+                    .multilineTextAlignment(.center)
             )
             .frame(width: UIScreen.main.bounds.width * width,
                    height: UIScreen.main.bounds.height * height)
-        
-        
-//        Text(texto)
-//            .foregroundColor(colorLetra)
-//            .font(.system(size: UIScreen.main.bounds.height / 40,
-//                          weight: .light,
-//                          design: .monospaced))
-//            .frame(width: UIScreen.main.bounds.width * width,
-//                   height: UIScreen.main.bounds.height * height)
-//            .background(colorFondo)
-//            .cornerRadius(25)
+            .animation(animation)
     }
 }
 
 struct BotonRectangular_Previews: PreviewProvider {
     static var previews: some View {
-        BotonRectangular(texto: "Empezar", colorFondo: Color("ColorPrincipalNegro"), colorLetra: Color("ColorPrincipalBlanco"), width: 0.88, height: 0.08)
+        Juego()
     }
 }

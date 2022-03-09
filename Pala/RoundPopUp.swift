@@ -34,6 +34,15 @@ struct RoundPopUp: View {
                                           weight: .light,
                                           design: .monospaced))
                             .animation(.spring(response: 0.6, dampingFraction: 0.8))
+                        
+                        Spacer()
+                        
+                        Text("La palabra era: \(palabraViewModel.palabraSeleccionada)")
+                            .foregroundColor(Color("ColorPrincipalBlanco"))
+                            .font(.system(size: UIScreen.main.bounds.height / 38,
+                                          weight: .light,
+                                          design: .monospaced))
+                            .animation(.spring(response: 0.6, dampingFraction: 0.8))
                     }
                     
                     Spacer()
@@ -42,7 +51,12 @@ struct RoundPopUp: View {
                         palabraViewModel.NewRound()
                         palabraViewModel.showWinner.toggle()
                     } label: {
-                        BotonRectangular(texto: "Siguiente palabra", colorFondo: Color("ColorPrincipalBlanco"), colorLetra: Color("ColorPrincipalNegro"), width: 0.88, height: 0.08)
+                        BotonRectangular(texto: "Siguiente palabra",
+                                         colorFondo: Color("ColorPrincipalBlanco"),
+                                         colorLetra: Color("ColorPrincipalNegro"),
+                                         width: 0.88,
+                                         height: 0.08,
+                                         animation: palabraViewModel.animation)
                     }
                     .padding(.bottom, UIScreen.main.bounds.width * 0.09)
                     .animation(.spring(response: 0.6, dampingFraction: 0.8).delay(0.1))
