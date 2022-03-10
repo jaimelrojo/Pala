@@ -262,6 +262,8 @@ struct Juego: View {
     @StateObject var palabraViewModel: PalabrasModelView = PalabrasModelView()
     @State var mostrarPalabraScore: Bool = true
     @State var anchoScore: Double = 0.55
+    @State var conteoTimer: Timer?
+    @State var conteoCounter = 0
 //    @ObservedObject var palabraViewModel: PalabrasModelView
     
     var body: some View {
@@ -278,22 +280,38 @@ struct Juego: View {
                                      colorFondo: Color("ColorPrincipalNegro"),
                                      colorLetra: Color("ColorPrincipalBlanco"),
                                      width: anchoScore,
-                                     height: 0.06,
+                                     height: 0.05,
                                      animation: .spring(response: 0.7, dampingFraction: 0.8))
                         .onAppear {
-                            DispatchQueue.main.asyncAfter(deadline: .now() + 4) {
+                            conteoTimer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: true) { index in
+                                if conteoCounter < 4 {
+                                    conteoCounter += 1
+                                } else {
+                                    conteoTimer?.invalidate()
                                     mostrarPalabraScore = false
                                     anchoScore = 0.20
+                                    conteoCounter = 0
+                                }
                             }
                         }
                         .onTapGesture {
+                            if mostrarPalabraScore == false {
                                 mostrarPalabraScore = true
                                 anchoScore = 0.55
-                            
-                            DispatchQueue.main.asyncAfter(deadline: .now() + 4) {
-                                    mostrarPalabraScore = false
-                                    anchoScore = 0.20
+                                conteoTimer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: true) { index in
+                                    if conteoCounter < 4 {
+                                        conteoCounter += 1
+                                    } else {
+                                        conteoTimer?.invalidate()
+                                        mostrarPalabraScore = false
+                                        anchoScore = 0.20
+                                        conteoCounter = 0
+                                    }
+                                }
+                            } else {
+                                conteoCounter = 0
                             }
+                            
                         }
                     
 //                    BotonRectangular(palabraViewModel: palabraViewModel,
