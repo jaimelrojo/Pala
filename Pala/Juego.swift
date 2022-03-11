@@ -56,7 +56,7 @@ class PalabrasModelView: ObservableObject {
     @Published var encontradas: [Bool] = [false, false, false, false, false]
     
     @Published var intentos: [Intento] = [Intento(letra1: "", colorFondo1: Color("ColorPrincipalNegro"), colorLetra1: Color("ColorPrincipalBlanco"), letra2: "", colorFondo2: Color("ColorPrincipalNegro"), colorLetra2: Color("ColorPrincipalBlanco"), letra3: "", colorFondo3: Color("ColorPrincipalNegro"), colorLetra3: Color("ColorPrincipalBlanco"),  letra4: "", colorFondo4: Color("ColorPrincipalNegro"), colorLetra4: Color("ColorPrincipalBlanco"), letra5: "", colorFondo5: Color("ColorPrincipalNegro"), colorLetra5: Color("ColorPrincipalBlanco"), done: false)]
-    @Published var numeroDeIntentos: Int = 5
+    @Published var numeroDeIntentos: Int = 6
     
     @Published var showWinner: Bool = false
     @Published var timer: Timer?
@@ -227,6 +227,23 @@ class PalabrasModelView: ObservableObject {
         }
     }
     
+    func IntroButton() {
+        if CheckWinner() == true {
+            YouAreAWinner()
+        } else {
+            if intentos.count < numeroDeIntentos {
+                CheckGreen()
+                CheckGray()
+                CheckYellow()
+                AppendIntento()
+                coloresFondo = [Color("ColorPrincipalNegro"), Color("ColorPrincipalNegro"), Color("ColorPrincipalNegro"), Color("ColorPrincipalNegro"), Color("ColorPrincipalNegro")]
+                encontradas = [false, false, false, false, false]
+            } else {
+                YouAreALoser()
+            }
+        }
+    }
+    
     func AppendIntento() {
         intentos.insert(.init(letra1: palabra[0], colorFondo1: coloresFondo[0], colorLetra1: Color("ColorBlanco"), letra2: palabra[1], colorFondo2: coloresFondo[1], colorLetra2: Color("ColorBlanco"), letra3: palabra[2], colorFondo3: coloresFondo[2], colorLetra3: Color("ColorBlanco"), letra4: palabra[3], colorFondo4: coloresFondo[3], colorLetra4: Color("ColorBlanco"), letra5: palabra[4], colorFondo5: coloresFondo[4], colorLetra5: Color("ColorBlanco"), done: true), at: (intentos.count - 1))
         palabra = ["", "", "", "", ""]
@@ -259,12 +276,12 @@ class PalabrasModelView: ObservableObject {
 
 struct Juego: View {
     
-    @StateObject var palabraViewModel: PalabrasModelView = PalabrasModelView()
-    @State var mostrarPalabraScore: Bool = true
-    @State var anchoScore: Double = 0.55
-    @State var conteoTimer: Timer?
-    @State var conteoCounter = 0
-//    @ObservedObject var palabraViewModel: PalabrasModelView
+//    @StateObject var palabraViewModel: PalabrasModelView = PalabrasModelView()
+//    @State var mostrarPalabraScore: Bool = true
+//    @State var anchoScore: Double = 0.55
+//    @State var conteoTimer: Timer?
+//    @State var conteoCounter = 0
+    @ObservedObject var palabraViewModel: PalabrasModelView
     
     var body: some View {
         
@@ -273,57 +290,8 @@ struct Juego: View {
             Color("ColorPrincipalBlanco")
                 .ignoresSafeArea()
             
-            VStack(spacing: 15) {
-                
-                HStack {
-                    BotonRectangular(texto: mostrarPalabraScore ? "Puntuación: \(palabraViewModel.scoreActual)" : "\(palabraViewModel.scoreActual)",
-                                     colorFondo: Color("ColorPrincipalNegro"),
-                                     colorLetra: Color("ColorPrincipalBlanco"),
-                                     width: anchoScore,
-                                     height: 0.05,
-                                     animation: .spring(response: 0.7, dampingFraction: 0.8))
-                        .onAppear {
-                            conteoTimer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: true) { index in
-                                if conteoCounter < 4 {
-                                    conteoCounter += 1
-                                } else {
-                                    conteoTimer?.invalidate()
-                                    mostrarPalabraScore = false
-                                    anchoScore = 0.20
-                                    conteoCounter = 0
-                                }
-                            }
-                        }
-                        .onTapGesture {
-                            if mostrarPalabraScore == false {
-                                mostrarPalabraScore = true
-                                anchoScore = 0.55
-                                conteoTimer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: true) { index in
-                                    if conteoCounter < 4 {
-                                        conteoCounter += 1
-                                    } else {
-                                        conteoTimer?.invalidate()
-                                        mostrarPalabraScore = false
-                                        anchoScore = 0.20
-                                        conteoCounter = 0
-                                    }
-                                }
-                            } else {
-                                conteoCounter = 0
-                            }
-                            
-                        }
-                    
-//                    BotonRectangular(palabraViewModel: palabraViewModel,
-//                                     texto: "Highscore: \(palabraViewModel.highScore)",
-//                                     colorFondo: Color("ColorPrincipalNegro"),
-//                                     colorLetra: Color("ColorPrincipalBlanco"),
-//                                     width: 0.4,
-//                                     height: 0.06)
-                }
-                .padding(.horizontal)
-                
-                VStack {
+            VStack(spacing: 18) {
+//                VStack {
 //                    Text("\(palabraViewModel.diccionarioRevuelto[0])")
 //                        .foregroundColor(Color("ColorNegro"))
 //                    Text("\(palabraViewModel.diccionarioRevuelto[1])")
@@ -352,9 +320,7 @@ struct Juego: View {
 //                            }
 //                        }
 //                    }
-                }
-                
-                Spacer()
+//                }
                 
 //                Image("cheems")
 //                    .resizable()
@@ -370,6 +336,8 @@ struct Juego: View {
 //                        palabraViewModel.SelectWord()
 //                    }
 //                }
+                
+                Spacer()
                 
                 VStack {
                     ForEach(palabraViewModel.intentos) { index in
@@ -409,27 +377,18 @@ struct Juego: View {
                         .transition(.asymmetric(insertion: .move(edge: .bottom).combined(with: .opacity), removal: .offset(y: -UIScreen.main.bounds.height * 0.7)))
                     }
                 }
-                
                 Teclado(palabraViewModel: palabraViewModel)
             }
             .transition(.move(edge: .bottom))
-            
-            VStack {
-                if palabraViewModel.showWinner == true {
-
-                    Spacer()
-
-                    RoundPopUp(palabraViewModel: palabraViewModel)
-                }
-            }
-            .edgesIgnoringSafeArea(.bottom)
         }
+//        .frame(width: UIScreen.main.bounds.width,
+//               height: UIScreen.main.bounds.height * 0.904)
     }
 }
 
 struct Juego_Previews: PreviewProvider {
     static var previews: some View {
-        Juego()
-            .preferredColorScheme(.dark)
+        VistaPrincipal()
+            .preferredColorScheme(.light)
     }
 }

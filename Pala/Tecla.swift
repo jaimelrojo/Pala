@@ -30,8 +30,8 @@ struct Tecla: View {
     }
 }
 
-struct Tecla_Previews: PreviewProvider {
-    static var previews: some View {
-        Juego()
-    }
-}
+//struct Tecla_Previews: PreviewProvider {
+//    static var previews: some View {
+//        Juego()
+//    }
+//}

@@ -32,6 +32,7 @@ struct MenuPrincipal: View {
             
             //MARK: CAPA 1: Fondo
             
+            if menuViewModel.juegoIniciado == false {
             Color("ColorPrincipalNegro")
                 .onTapGesture {
                     if menuViewModel.mostrarMenu1 == true {
@@ -42,6 +43,7 @@ struct MenuPrincipal: View {
                     }
                 }
                 .edgesIgnoringSafeArea(.all)
+            }
             
             //MARK: CAPA 2: Menu principal
             
@@ -56,10 +58,16 @@ struct MenuPrincipal: View {
                 }
                 
                 Button {
-                    menuViewModel.mostrarMenu1 = true
-                    menuViewModel.anchoMenu1 = 1
-                    menuViewModel.alturaMenu1 = 0.50
-                    textoBoton = ""
+                    withAnimation(palabraViewModel.animation){
+                        menuViewModel.juegoIniciado = true
+                        menuViewModel.alturaMenu1 = 0.904
+                        menuViewModel.anchoMenu1 = 1
+                        textoBoton = ""
+                    }
+//                    menuViewModel.mostrarMenu1 = true
+//                    menuViewModel.anchoMenu1 = 1
+//                    menuViewModel.alturaMenu1 = 0.50
+                    
                 } label: {
                     BotonRectangular(texto: textoBoton,
                                      colorFondo: Color("ColorPrincipalBlanco"),
@@ -70,20 +78,19 @@ struct MenuPrincipal: View {
                 }
                 .padding(.bottom, menuViewModel.mostrarMenu1 ? 0 : UIScreen.main.bounds.width * 0.09)
                 .disabled(menuViewModel.mostrarMenu1)
-                .disabled(menuViewModel.juegoIniciado)
+//                .disabled(menuViewModel.juegoIniciado)
                 .animation(menuViewModel.animation)
             }
             .edgesIgnoringSafeArea(.bottom)
             
-            if menuViewModel.mostrarMenu1 == true {
-                MenuDesplegable(menuViewModel: menuViewModel, palabraViewModel: palabraViewModel)
-            }
+            //MARK: CAPA 3: Juego
             
             if menuViewModel.juegoIniciado == true {
-                ZStack {
+                ZStack{
+                    
                     Juego(palabraViewModel: palabraViewModel)
-                        .animation(menuViewModel.animation)
-//                        .frame(height: UIScreen.main.bounds.height * 0.89)
+//                        .frame(width: UIScreen.main.bounds.width,
+//                               height: UIScreen.main.bounds.height * 0.904)
                     
                     VStack {
                         if palabraViewModel.showWinner == true {
@@ -93,10 +100,9 @@ struct MenuPrincipal: View {
                             RoundPopUp(palabraViewModel: palabraViewModel)
                         }
                     }
-                    .edgesIgnoringSafeArea(.bottom)
+//                    .edgesIgnoringSafeArea(.bottom)
                 }
                 .transition(.move(edge: .bottom))
-//                .edgesIgnoringSafeArea(.horizontal)
             }
         }
     }

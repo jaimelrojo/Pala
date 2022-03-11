@@ -35,8 +35,8 @@ struct BotonRectangular: View {
     }
 }
 
-struct BotonRectangular_Previews: PreviewProvider {
-    static var previews: some View {
-        Juego()
-    }
-}
+//struct BotonRectangular_Previews: PreviewProvider {
+//    static var previews: some View {
+//        Juego()
+//    }
+//}

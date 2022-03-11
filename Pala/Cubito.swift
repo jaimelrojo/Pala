@@ -29,8 +29,8 @@ struct Cubito: View {
     }
 }
 
-struct Cubito_Previews: PreviewProvider {
-    static var previews: some View {
-        Juego()
-    }
-}
+//struct Cubito_Previews: PreviewProvider {
+//    static var previews: some View {
+//        Juego()
+//    }
+//}

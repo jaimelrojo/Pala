@@ -114,22 +114,22 @@ struct Teclado: View {
             }
             
             Button {
-                
-                if palabraViewModel.CheckWinner() == true {
-                    palabraViewModel.YouAreAWinner()
-                } else {
-                    if palabraViewModel.intentos.count < palabraViewModel.numeroDeIntentos {
-                        palabraViewModel.CheckGreen()
-                        palabraViewModel.CheckGray()
-                        palabraViewModel.CheckYellow()
-                        
-                        palabraViewModel.AppendIntento()
-                        palabraViewModel.coloresFondo = [Color("ColorPrincipalNegro"), Color("ColorPrincipalNegro"), Color("ColorPrincipalNegro"), Color("ColorPrincipalNegro"), Color("ColorPrincipalNegro")]
-                        palabraViewModel.encontradas = [false, false, false, false, false]
-                    } else {
-                        palabraViewModel.YouAreALoser()
-                    }
-                }
+                palabraViewModel.IntroButton()
+//                if palabraViewModel.CheckWinner() == true {
+//                    palabraViewModel.YouAreAWinner()
+//                } else {
+//                    if palabraViewModel.intentos.count < palabraViewModel.numeroDeIntentos {
+//                        palabraViewModel.CheckGreen()
+//                        palabraViewModel.CheckGray()
+//                        palabraViewModel.CheckYellow()
+//
+//                        palabraViewModel.AppendIntento()
+//                        palabraViewModel.coloresFondo = [Color("ColorPrincipalNegro"), Color("ColorPrincipalNegro"), Color("ColorPrincipalNegro"), Color("ColorPrincipalNegro"), Color("ColorPrincipalNegro")]
+//                        palabraViewModel.encontradas = [false, false, false, false, false]
+//                    } else {
+//                        palabraViewModel.YouAreALoser()
+//                    }
+//                }
             } label: {
                 Tecla(palabraViewModel: palabraViewModel,
                       text: "INTRO",
@@ -149,8 +149,8 @@ struct Teclado: View {
     }
 }
 
-struct Teclado_Previews: PreviewProvider {
-    static var previews: some View {
-        Juego()
-    }
-}
+//struct Teclado_Previews: PreviewProvider {
+//    static var previews: some View {
+//        Juego()
+//    }
+//}

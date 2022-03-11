@@ -63,16 +63,17 @@ struct RoundPopUp: View {
                 }
             )
             .frame(width: UIScreen.main.bounds.width,
-                   height: UIScreen.main.bounds.height * 0.327)
+                   height: UIScreen.main.bounds.height * 0.328)
             .cornerRadius(25)
             .animation(.spring(response: 0.6, dampingFraction: 0.8))
             .transition(.move(edge: .bottom))
     }
+        
 }
 
-struct RoundPopUp_Previews: PreviewProvider {
-    static var previews: some View {
-        Juego()
-            .preferredColorScheme(.dark)
-    }
-}
+//struct RoundPopUp_Previews: PreviewProvider {
+//    static var previews: some View {
+//        Juego()
+//            .preferredColorScheme(.dark)
+//    }
+//}

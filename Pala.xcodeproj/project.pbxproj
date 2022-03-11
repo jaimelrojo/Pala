@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		EE1ED90F27D36B1700E0EC25 /* BotonRectangular.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE1ED90E27D36B1700E0EC25 /* BotonRectangular.swift */; };
+		EE41BC3827DAEBF200A7C8D6 /* VistaPrincipal.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE41BC3727DAEBF200A7C8D6 /* VistaPrincipal.swift */; };
+		EE41BC3A27DAF08800A7C8D6 /* Marcador.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE41BC3927DAF08800A7C8D6 /* Marcador.swift */; };
+		EE41BC3C27DB03A800A7C8D6 /* MenuInicial.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE41BC3B27DB03A800A7C8D6 /* MenuInicial.swift */; };
 		EE4E36A427C3A9A600B60513 /* PalaApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4E36A327C3A9A600B60513 /* PalaApp.swift */; };
 		EE4E36A627C3A9A600B60513 /* Juego.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4E36A527C3A9A600B60513 /* Juego.swift */; };
 		EE4E36A827C3A9A700B60513 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EE4E36A727C3A9A700B60513 /* Assets.xcassets */; };
@@ -36,6 +39,9 @@
 
 /* Begin PBXFileReference section */
 		EE1ED90E27D36B1700E0EC25 /* BotonRectangular.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BotonRectangular.swift; sourceTree = "<group>"; };
+		EE41BC3727DAEBF200A7C8D6 /* VistaPrincipal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VistaPrincipal.swift; sourceTree = "<group>"; };
+		EE41BC3927DAF08800A7C8D6 /* Marcador.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Marcador.swift; sourceTree = "<group>"; };
+		EE41BC3B27DB03A800A7C8D6 /* MenuInicial.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuInicial.swift; sourceTree = "<group>"; };
 		EE4E36A027C3A9A600B60513 /* Pala.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pala.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EE4E36A327C3A9A600B60513 /* PalaApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PalaApp.swift; sourceTree = "<group>"; };
 		EE4E36A527C3A9A600B60513 /* Juego.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Juego.swift; sourceTree = "<group>"; };
@@ -90,6 +96,9 @@
 				EE8DAEAA27C3FFA200204D09 /* Teclado.swift */,
 				EEE4343F27CEBF1E00509DF2 /* Tecla.swift */,
 				EEEA7DC527C8492400FCECD3 /* RoundPopUp.swift */,
+				EE41BC3927DAF08800A7C8D6 /* Marcador.swift */,
+				EE41BC3727DAEBF200A7C8D6 /* VistaPrincipal.swift */,
+				EE41BC3B27DB03A800A7C8D6 /* MenuInicial.swift */,
 				EE4E36A727C3A9A700B60513 /* Assets.xcassets */,
 				EE4E36A927C3A9A700B60513 /* Preview Content */,
 			);
@@ -181,7 +190,10 @@
 				EEEA7DC627C8492400FCECD3 /* RoundPopUp.swift in Sources */,
 				EEE4344027CEBF1E00509DF2 /* Tecla.swift in Sources */,
 				EE8DAEB127C41C1100204D09 /* MenuDesplegable.swift in Sources */,
+				EE41BC3C27DB03A800A7C8D6 /* MenuInicial.swift in Sources */,
+				EE41BC3A27DAF08800A7C8D6 /* Marcador.swift in Sources */,
 				EEDE0DD527C5AD2600DF9AFE /* Cubito.swift in Sources */,
+				EE41BC3827DAEBF200A7C8D6 /* VistaPrincipal.swift in Sources */,
 				EE1ED90F27D36B1700E0EC25 /* BotonRectangular.swift in Sources */,
 				EE8DAEAB27C3FFA200204D09 /* Teclado.swift in Sources */,
 				EE4E36A427C3A9A600B60513 /* PalaApp.swift in Sources */,
