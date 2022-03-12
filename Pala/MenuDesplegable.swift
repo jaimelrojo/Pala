@@ -9,7 +9,7 @@ import SwiftUI
 
 struct MenuDesplegable: View {
     
-    @ObservedObject var menuViewModel: MenuModelView
+//    @ObservedObject var menuViewModel: MenuModelView
     @ObservedObject var palabraViewModel: PalabrasModelView
     
 //    var animation: Animation = .spring(response: 0.7, dampingFraction: 0.8)
@@ -27,24 +27,24 @@ struct MenuDesplegable: View {
                 .font(.system(size: UIScreen.main.bounds.height / 40,
                               weight: .light,
                               design: .monospaced))
-                .animation(menuViewModel.animation)
+//                .animation(menuViewModel.animation)
             
-            VStack {
-                ForEach(menuViewModel.dificultades.indices) { index in
-                    Button {
-//                        colorDificultades = [Color("ColorPrincipalNegro"), Color("ColorPrincipalNegro"), Color("ColorPrincipalNegro")]
-//                        colorDificultades[index] = Color.green
-                    } label: {
-                        BotonRectangular(texto: "\(menuViewModel.dificultades[index])",
-                                         colorFondo: colorDificultades[index],
-                                         colorLetra: Color("ColorPrincipalBlanco"),
-                                         width: 0.88,
-                                         height: 0.06,
-                                         animation: palabraViewModel.animation)
-                    }
-                    .animation(menuViewModel.animation.delay(Double(index + 1)/10))
-                }
-            }
+//            VStack {
+//                ForEach(menuViewModel.dificultades.indices) { index in
+//                    Button {
+////                        colorDificultades = [Color("ColorPrincipalNegro"), Color("ColorPrincipalNegro"), Color("ColorPrincipalNegro")]
+////                        colorDificultades[index] = Color.green
+//                    } label: {
+//                        BotonRectangular(texto: "\(menuViewModel.dificultades[index])",
+//                                         colorFondo: colorDificultades[index],
+//                                         colorLetra: Color("ColorPrincipalBlanco"),
+//                                         width: 0.88,
+//                                         height: 0.06,
+//                                         animation: palabraViewModel.animation)
+//                    }
+//                    .animation(menuViewModel.animation.delay(Double(index + 1)/10))
+//                }
+//            }
             
 //            Picker("", selection: $dificultades) {
 //                ForEach(0..<4) { index in
@@ -66,9 +66,9 @@ struct MenuDesplegable: View {
 //            .animation(animation.delay(0.1))
             
             Button {
-                menuViewModel.alturaMenu1 = UIScreen.main.bounds.height
-                menuViewModel.mostrarMenu1 = false
-                menuViewModel.juegoIniciado = true
+//                menuViewModel.alturaMenu1 = UIScreen.main.bounds.height
+//                menuViewModel.mostrarMenu1 = false
+//                menuViewModel.juegoIniciado = true
             } label: {
                 BotonRectangular(texto: "Continuar",
                                  colorFondo: Color("ColorPrincipalNegro"),
@@ -76,7 +76,7 @@ struct MenuDesplegable: View {
                                  width: 0.88,
                                  height: 0.08,
                                  animation: palabraViewModel.animation)
-                    .animation(menuViewModel.animation)
+//                    .animation(menuViewModel.animation)
 //                Rectangle()
 //                    .cornerRadius(25)
 //                    .foregroundColor(Color("ColorPrincipalNegro"))
@@ -97,9 +97,9 @@ struct MenuDesplegable: View {
     }
 }
 
-struct MenuDesplegable_Previews: PreviewProvider {
-    static var previews: some View {
-        MenuPrincipal()
-            .preferredColorScheme(.dark)
-    }
-}
+//struct MenuDesplegable_Previews: PreviewProvider {
+//    static var previews: some View {
+//        VistaPrincipal()
+//            .preferredColorScheme(.dark)
+//    }
+//}

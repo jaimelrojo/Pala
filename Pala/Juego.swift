@@ -31,11 +31,11 @@ struct Intento: Identifiable {
 
 class PalabrasModelView: ObservableObject {
     
-    enum Dificultades {
-        case normal
-        case dificil
-        case extremo
-    }
+//    enum Dificultades {
+//        case normal
+//        case dificil
+//        case extremo
+//    }
     
     var diccionario: [String] = ["CLIMA", "CALOR", "COMER", "SUEÑO", "CORRE", "SALIR", "HUMOR", "NEGRO", "DURAR", "BARRA", "BUQUE", "AUDIO", "PUNTO", "VIDEO", "FUEGO", "VIRAL", "GUSTO", "TACTO", "VISTA", "TEXAS", "GORRA", "REZAR", "HUESO", "BUSTO", "SUSTO", "MUSEO", "HUEVO", "BUSCO", "JUEGO", "BARES", "NARIZ", "AUTOR", "COLOR", "TELAS", "TEJAS", "TEMAS", "MOVER", "SISMO", "MIXTO", "SUMAR", "RESTA", "DOBLE", "LIBRA", "VIRGO", "TOREO", "LIBRO", "AYUDA", "PANDA", "PERRO", "TECLA", "NUEVO", "VIEJO"]
     
@@ -62,11 +62,14 @@ class PalabrasModelView: ObservableObject {
     @Published var timer: Timer?
     @Published var timerCounter = 0
     
-    @Published var scoreActual = 0
+//    @Published var scoreActual = 0
 //    @Published var highScore = 0
+    @AppStorage("scoreActual") var scoreActual: Int = 0
     @AppStorage("highScore") var highScore: Int = 0
     
     @Published var animation = Animation.spring(response: 0.7, dampingFraction: 0.7)
+    
+    @Published var juegoComenzado: Bool = false
     
     init() {
         SelectWord()
@@ -284,111 +287,105 @@ struct Juego: View {
     @ObservedObject var palabraViewModel: PalabrasModelView
     
     var body: some View {
-        
-        ZStack {
             
-            Color("ColorPrincipalBlanco")
-                .ignoresSafeArea()
-            
-            VStack(spacing: 18) {
-//                VStack {
-//                    Text("\(palabraViewModel.diccionarioRevuelto[0])")
-//                        .foregroundColor(Color("ColorNegro"))
-//                    Text("\(palabraViewModel.diccionarioRevuelto[1])")
-//                        .foregroundColor(Color("ColorNegro"))
-//                    Text("\(palabraViewModel.diccionarioRevuelto[2])")
-//                        .foregroundColor(Color("ColorNegro"))
-//                    Text("\(palabraViewModel.scoreActual)")
-//                        .foregroundColor(Color("ColorRojo"))
-//                    Text("\(palabraViewModel.highScore)")
-//                        .foregroundColor(Color("ColorBlanco"))
-
-//                    HStack {
-//                        ForEach(0..<5) { index in
-//                            Text("\(palabraViewModel.palabraSeleccionadaDividida[index])")
+        VStack(spacing: 18) {
+//            VStack {
+//                Text("\(palabraViewModel.diccionarioRevuelto[0])")
+//                    .foregroundColor(Color("ColorNegro"))
+//                Text("\(palabraViewModel.diccionarioRevuelto[1])")
+//                    .foregroundColor(Color("ColorNegro"))
+//                Text("\(palabraViewModel.diccionarioRevuelto[2])")
+//                    .foregroundColor(Color("ColorNegro"))
+//                Text("\(palabraViewModel.scoreActual)")
+//                    .foregroundColor(Color("ColorRojo"))
+//                Text("\(palabraViewModel.highScore)")
+//                    .foregroundColor(Color("ColorBlanco"))
+//
+//                HStack {
+//                    ForEach(0..<5) { index in
+//                        Text("\(palabraViewModel.palabraSeleccionadaDividida[index])")
+//                            .foregroundColor(Color("ColorPrincipalNegro"))
+//                    }
+//                }
+//                HStack {
+//                    ForEach(0..<5) { index in
+//                        if palabraViewModel.encontradas[index] == false {
+//                            Text("False")
+//                                .foregroundColor(Color("ColorPrincipalNegro"))
+//                        } else {
+//                            Text("True")
 //                                .foregroundColor(Color("ColorPrincipalNegro"))
 //                        }
 //                    }
-//                    HStack {
-//                        ForEach(0..<5) { index in
-//                            if palabraViewModel.encontradas[index] == false {
-//                                Text("False")
-//                                    .foregroundColor(Color("ColorPrincipalNegro"))
-//                            } else {
-//                                Text("True")
-//                                    .foregroundColor(Color("ColorPrincipalNegro"))
-//                            }
-//                        }
-//                    }
 //                }
-                
-//                Image("cheems")
-//                    .resizable()
-//                    .scaledToFit()
-//                    .animation(.spring(response: 0.7, dampingFraction: 0.7))
-                
-//                Button("Cambiar palabra") {
-//                    if palabraViewModel.contador < (palabraViewModel.diccionarioRevuelto.count - 1) {
-//                        palabraViewModel.contador += 1
-//                        palabraViewModel.SelectWord()
-//                    } else {
-//                        palabraViewModel.contador = 0
-//                        palabraViewModel.SelectWord()
-//                    }
+//            }
+//
+//            Image("cheems")
+//                .resizable()
+//                .scaledToFit()
+//                .animation(.spring(response: 0.7, dampingFraction: 0.7))
+//
+//            Button("Cambiar palabra") {
+//                if palabraViewModel.contador < (palabraViewModel.diccionarioRevuelto.count - 1) {
+//                    palabraViewModel.contador += 1
+//                    palabraViewModel.SelectWord()
+//                } else {
+//                    palabraViewModel.contador = 0
+//                    palabraViewModel.SelectWord()
 //                }
+//            }
+//
+            Spacer()
                 
-                Spacer()
-                
-                VStack {
-                    ForEach(palabraViewModel.intentos) { index in
-                        HStack {
-                            Cubito(text: index.done ? index.letra1 : palabraViewModel.palabra[0],
-                                   colorLetra: index.done ? index.colorLetra1 : palabraViewModel.coloresLetra[0],
-                                   colorFondo: index.done ? index.colorFondo1 : palabraViewModel.coloresFondo[0],
-                                   width: palabraViewModel.anchoCubito)
-//                                .animation(palabraViewModel.animation)
-                                .offset(y: palabraViewModel.timerCounter == 1 ? -15 : 0)
-                            Cubito(text: index.done ? index.letra2 : palabraViewModel.palabra[1],
-                                   colorLetra: index.done ? index.colorLetra2 : palabraViewModel.coloresLetra[1],
-                                   colorFondo: index.done ? index.colorFondo2 : palabraViewModel.coloresFondo[1],
-                                   width: palabraViewModel.anchoCubito)
-//                                .animation(palabraViewModel.animation).delay(0.05))
-                                .offset(y: palabraViewModel.timerCounter == 2 ? -15 : 0)
-                            Cubito(text: index.done ? index.letra3 : palabraViewModel.palabra[2],
-                                   colorLetra: index.done ? index.colorLetra3 : palabraViewModel.coloresLetra[2],
-                                   colorFondo: index.done ? index.colorFondo3 : palabraViewModel.coloresFondo[2],
-                                   width: palabraViewModel.anchoCubito)
-//                                .animation(palabraViewModel.animation).delay(0.1))
-                                .offset(y: palabraViewModel.timerCounter == 3 ? -15 : 0)
-                            Cubito(text: index.done ? index.letra4 : palabraViewModel.palabra[3],
-                                   colorLetra: index.done ? index.colorLetra4 : palabraViewModel.coloresLetra[3],
-                                   colorFondo: index.done ? index.colorFondo4 : palabraViewModel.coloresFondo[3],
-                                   width: palabraViewModel.anchoCubito)
-//                                .animation(palabraViewModel.animation).delay(0.15))
-                                .offset(y: palabraViewModel.timerCounter == 4 ? -15 : 0)
-                            Cubito(text: index.done ? index.letra5 : palabraViewModel.palabra[4],
-                                   colorLetra: index.done ? index.colorLetra5 : palabraViewModel.coloresLetra[4],
-                                   colorFondo: index.done ? index.colorFondo5 : palabraViewModel.coloresFondo[4],
-                                   width: palabraViewModel.anchoCubito)
-                                .offset(y: palabraViewModel.timerCounter == 5 ? -15 : 0)
-//                                .animation(palabraViewModel.animation.delay(0.2))
-                        }
-                        .animation(palabraViewModel.animation)
-                        .transition(.asymmetric(insertion: .move(edge: .bottom).combined(with: .opacity), removal: .offset(y: -UIScreen.main.bounds.height * 0.7)))
+            VStack {
+                ForEach(palabraViewModel.intentos) { index in
+                    HStack {
+                        Cubito(text: index.done ? index.letra1 : palabraViewModel.palabra[0],
+                               colorLetra: index.done ? index.colorLetra1 : palabraViewModel.coloresLetra[0],
+                               colorFondo: index.done ? index.colorFondo1 : palabraViewModel.coloresFondo[0],
+                               width: palabraViewModel.anchoCubito)
+//                            .animation(palabraViewModel.animation)
+                            .offset(y: palabraViewModel.timerCounter == 1 ? -15 : 0)
+                        Cubito(text: index.done ? index.letra2 : palabraViewModel.palabra[1],
+                               colorLetra: index.done ? index.colorLetra2 : palabraViewModel.coloresLetra[1],
+                               colorFondo: index.done ? index.colorFondo2 : palabraViewModel.coloresFondo[1],
+                               width: palabraViewModel.anchoCubito)
+//                            .animation(palabraViewModel.animation).delay(0.05))
+                            .offset(y: palabraViewModel.timerCounter == 2 ? -15 : 0)
+                        Cubito(text: index.done ? index.letra3 : palabraViewModel.palabra[2],
+                               colorLetra: index.done ? index.colorLetra3 : palabraViewModel.coloresLetra[2],
+                               colorFondo: index.done ? index.colorFondo3 : palabraViewModel.coloresFondo[2],
+                               width: palabraViewModel.anchoCubito)
+//                            .animation(palabraViewModel.animation).delay(0.1))
+                            .offset(y: palabraViewModel.timerCounter == 3 ? -15 : 0)
+                        Cubito(text: index.done ? index.letra4 : palabraViewModel.palabra[3],
+                               colorLetra: index.done ? index.colorLetra4 : palabraViewModel.coloresLetra[3],
+                               colorFondo: index.done ? index.colorFondo4 : palabraViewModel.coloresFondo[3],
+                               width: palabraViewModel.anchoCubito)
+//                            .animation(palabraViewModel.animation).delay(0.15))
+                            .offset(y: palabraViewModel.timerCounter == 4 ? -15 : 0)
+                        Cubito(text: index.done ? index.letra5 : palabraViewModel.palabra[4],
+                               colorLetra: index.done ? index.colorLetra5 : palabraViewModel.coloresLetra[4],
+                               colorFondo: index.done ? index.colorFondo5 : palabraViewModel.coloresFondo[4],
+                               width: palabraViewModel.anchoCubito)
+                            .offset(y: palabraViewModel.timerCounter == 5 ? -15 : 0)
+//                            .animation(palabraViewModel.animation.delay(0.2))
                     }
+                    .animation(palabraViewModel.animation)
+                    .transition(.asymmetric(insertion: .move(edge: .bottom).combined(with: .opacity), removal: .offset(y: -UIScreen.main.bounds.height * 0.7)))
                 }
-                Teclado(palabraViewModel: palabraViewModel)
             }
-            .transition(.move(edge: .bottom))
+            Teclado(palabraViewModel: palabraViewModel)
         }
-//        .frame(width: UIScreen.main.bounds.width,
-//               height: UIScreen.main.bounds.height * 0.904)
+        .transition(.move(edge: .bottom))
+        .frame(width: UIScreen.main.bounds.width,
+               height: UIScreen.main.bounds.height * 0.904)
     }
 }
 
 struct Juego_Previews: PreviewProvider {
     static var previews: some View {
         VistaPrincipal()
-            .preferredColorScheme(.light)
+            .preferredColorScheme(.dark)
     }
 }

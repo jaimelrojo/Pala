@@ -9,6 +9,7 @@ import SwiftUI
 
 struct Logo: View {
     
+    let colorLetras: Color
     var animation: Animation = .spring(response: 0.7, dampingFraction: 0.8)
     
     var body: some View {
@@ -23,7 +24,7 @@ struct Logo: View {
                 Image(systemName: "eye.fill")
             }
         }
-        .foregroundColor(Color("ColorPrincipalBlanco"))
+        .foregroundColor(colorLetras)
         .font(.system(size: UIScreen.main.bounds.height / 40,
                       weight: .light,
                       design: .monospaced))
@@ -33,6 +34,6 @@ struct Logo: View {
 
 struct Logo_Previews: PreviewProvider {
     static var previews: some View {
-        Logo()
+        Logo(colorLetras: Color("ColorPrincipalBlanco"))
     }
 }

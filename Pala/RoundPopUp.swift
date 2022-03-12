@@ -13,27 +13,24 @@ struct RoundPopUp: View {
     
     var body: some View {
         Rectangle()
-//            .foregroundColor(palabraViewModel.CheckWinner() ? .green : .red)
             .foregroundColor(Color("ColorPrincipalNegro"))
             .overlay(
                 VStack {
-                    
                     Spacer()
-                    
                     if palabraViewModel.CheckWinner() == true {
                         Text("Ganador")
                             .foregroundColor(Color("ColorPrincipalBlanco"))
                             .font(.system(size: UIScreen.main.bounds.height / 28,
                                           weight: .light,
                                           design: .monospaced))
-                            .animation(.spring(response: 0.6, dampingFraction: 0.8))
+                            .animation(palabraViewModel.animation)
                     } else {
                         Text("Perdedor")
                             .foregroundColor(Color("ColorPrincipalBlanco"))
                             .font(.system(size: UIScreen.main.bounds.height / 28,
                                           weight: .light,
                                           design: .monospaced))
-                            .animation(.spring(response: 0.6, dampingFraction: 0.8))
+                            .animation(palabraViewModel.animation)
                         
                         Spacer()
                         
@@ -42,7 +39,7 @@ struct RoundPopUp: View {
                             .font(.system(size: UIScreen.main.bounds.height / 38,
                                           weight: .light,
                                           design: .monospaced))
-                            .animation(.spring(response: 0.6, dampingFraction: 0.8))
+                            .animation(palabraViewModel.animation)
                     }
                     
                     Spacer()
@@ -57,23 +54,21 @@ struct RoundPopUp: View {
                                          width: 0.88,
                                          height: 0.08,
                                          animation: palabraViewModel.animation)
+                            .padding(.bottom, UIScreen.main.bounds.width * 0.09)
                     }
-                    .padding(.bottom, UIScreen.main.bounds.width * 0.09)
-                    .animation(.spring(response: 0.6, dampingFraction: 0.8).delay(0.1))
+                    .animation(palabraViewModel.animation.delay(0.1))
                 }
             )
             .frame(width: UIScreen.main.bounds.width,
                    height: UIScreen.main.bounds.height * 0.328)
             .cornerRadius(25)
-            .animation(.spring(response: 0.6, dampingFraction: 0.8))
+            .animation(palabraViewModel.animation)
             .transition(.move(edge: .bottom))
     }
-        
 }
 
-//struct RoundPopUp_Previews: PreviewProvider {
-//    static var previews: some View {
-//        Juego()
-//            .preferredColorScheme(.dark)
-//    }
-//}
+struct RoundPopUp_Previews: PreviewProvider {
+    static var previews: some View {
+        RoundPopUp(palabraViewModel: PalabrasModelView() )
+    }
+}

@@ -11,7 +11,7 @@ import SwiftUI
 struct PalaApp: App {
     var body: some Scene {
         WindowGroup {
-            MenuPrincipal()
+            VistaPrincipal()
         }
     }
 }
