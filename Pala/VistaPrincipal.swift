@@ -20,29 +20,25 @@ struct VistaPrincipal: View {
                             menuViewModel: menuViewModel)
             }
             
-            if palabraViewModel.juegoComenzado {
-                VStack {
+            VStack {
+                if palabraViewModel.juegoComenzado {
                     Juego(palabraViewModel: palabraViewModel)
                 }
-                .transition(.move(edge: .bottom))
             }
             
-            if palabraViewModel.juegoComenzado {
-                VStack {
+            VStack {
+                if palabraViewModel.juegoComenzado {
                     BotonSalir(palabraViewModel: palabraViewModel,
                                menuViewModel: menuViewModel)
                 }
-                .transition(.move(edge: .bottom))
             }
             
-            if palabraViewModel.showWinner {
-                VStack {
+            VStack {
+                if palabraViewModel.showWinner {
                     Spacer()
                     RoundPopUp(palabraViewModel: palabraViewModel)
                         .offset(y: -UIScreen.main.bounds.width * 0.017)
                 }
-                .transition(.move(edge: .bottom))
-                
             }
             
             Marcador(palabraViewModel: palabraViewModel,

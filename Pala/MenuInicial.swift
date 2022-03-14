@@ -42,7 +42,7 @@ struct MenuInicial: View {
                     menuViewModel.EraseWordPuntuacion()
                     palabraViewModel.SelectWord()
                 } label: {
-                    BotonRectangular(texto: palabraViewModel.juegoComenzado ? "" : "Comenzar",
+                    BotonRectangular(texto: palabraViewModel.juegoComenzado ? "" : palabraViewModel.scoreActual != 0 ? "Continuar" : "Comenzar",
                                      colorFondo: Color("ColorPrincipalBlanco"),
                                      colorLetra: Color("ColorPrincipalNegro"),
                                      width: menuViewModel.anchoBoton,

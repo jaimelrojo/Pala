@@ -40,6 +40,7 @@ struct BotonSalir: View {
         .frame(width: UIScreen.main.bounds.width,
                height: UIScreen.main.bounds.height * 0.904)
         .animation(palabraViewModel.animation)
+        .transition(.move(edge: .bottom).combined(with: .opacity))
     }
 }
 

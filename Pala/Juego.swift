@@ -48,7 +48,8 @@ class PalabrasModelView: ObservableObject {
     @Published var diccionarioRevuelto: [String] = [""]
     @Published var palabraSeleccionada: String = ""
     @Published var palabraSeleccionadaDividida: [String] = ["", "", "", "", ""]
-    @AppStorage("contador") var contador = 0
+    @Published var contador = 0
+//    @AppStorage("contador") var contador = 0
     
     @Published var palabra: [String] = ["", "", "", "", ""]
     @Published var coloresLetra: [Color] = [Color("ColorPrincipalBlanco"), Color("ColorPrincipalBlanco"), Color("ColorPrincipalBlanco"), Color("ColorPrincipalBlanco"), Color("ColorPrincipalBlanco")]
@@ -251,6 +252,15 @@ class PalabrasModelView: ObservableObject {
     }
     
     func NewRound() {
+        if CheckWinner() {
+            if contador < (diccionarioRevuelto.count - 1) {
+                contador += 1
+            } else {
+                contador = 0
+            }
+        } else {
+            contador = 0
+        }
         
         self.timer?.invalidate()
         timerCounter = 0
@@ -264,11 +274,12 @@ class PalabrasModelView: ObservableObject {
         intentos.removeAll()
         intentos.insert(.init(letra1: palabra[0], colorFondo1: coloresFondo[0], colorLetra1: coloresLetra[0], letra2: palabra[1], colorFondo2: coloresFondo[1], colorLetra2: coloresLetra[1], letra3: palabra[2], colorFondo3: coloresFondo[2], colorLetra3: coloresLetra[2], letra4: palabra[3], colorFondo4: coloresFondo[3], colorLetra4: coloresLetra[3], letra5: palabra[4], colorFondo5: coloresFondo[4], colorLetra5: coloresLetra[4], done: false), at: 0)
         
-        if contador < (diccionarioRevuelto.count - 1) {
-            contador += 1
-        } else {
-            contador = 0
-        }
+//        if contador < (diccionarioRevuelto.count - 1) {
+//            contador += 1
+//        } else {
+//            contador = 0
+//        }
+        
         SelectWord()
     }
 }
@@ -284,20 +295,20 @@ struct Juego: View {
         VStack(spacing: UIScreen.main.bounds.height * 0.024) {
             
             Spacer()
-            VStack {
-                Text("\(palabraViewModel.diccionarioRevuelto[0])")
-                    .foregroundColor(Color("ColorPrincipalNegro"))
-                Text("\(palabraViewModel.diccionarioRevuelto[1])")
-                    .foregroundColor(Color("ColorPrincipalNegro"))
-                Text("\(palabraViewModel.diccionarioRevuelto[2])")
-                    .foregroundColor(Color("ColorPrincipalNegro"))
+//            VStack {
+//                Text("\(palabraViewModel.diccionarioRevuelto[0])")
+//                    .foregroundColor(Color("ColorPrincipalNegro"))
+//                Text("\(palabraViewModel.diccionarioRevuelto[1])")
+//                    .foregroundColor(Color("ColorPrincipalNegro"))
+//                Text("\(palabraViewModel.diccionarioRevuelto[2])")
+//                    .foregroundColor(Color("ColorPrincipalNegro"))
 //
-                HStack {
-                    ForEach(0..<5) { index in
-                        Text("\(palabraViewModel.palabraSeleccionadaDividida[index])")
-                            .foregroundColor(Color("ColorPrincipalNegro"))
-                    }
-                }
+//                HStack {
+//                    ForEach(0..<5) { index in
+//                        Text("\(palabraViewModel.palabraSeleccionadaDividida[index])")
+//                            .foregroundColor(Color("ColorPrincipalNegro"))
+//                    }
+//                }
 //                HStack {
 //                    ForEach(0..<5) { index in
 //                        if palabraViewModel.encontradas[index] == false {
@@ -309,7 +320,7 @@ struct Juego: View {
 //                        }
 //                    }
 //                }
-            }
+//            }
 //
 //            Button("Cambiar palabra") {
 //                if palabraViewModel.contador < (palabraViewModel.diccionarioRevuelto.count - 1) {
@@ -365,6 +376,7 @@ struct Juego: View {
         }
         .frame(width: UIScreen.main.bounds.width,
                height: UIScreen.main.bounds.height * 0.904)
+        .transition(.move(edge: .bottom).combined(with: .opacity))
     }
 }
 

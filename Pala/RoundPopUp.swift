@@ -65,6 +65,7 @@ struct RoundPopUp: View {
                    height: UIScreen.main.bounds.height * 0.328)
             .cornerRadius(25)
             .animation(palabraViewModel.animation)
+            .transition(.move(edge: .bottom))
     }
 }
 
