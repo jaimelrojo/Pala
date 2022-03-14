@@ -12,9 +12,9 @@ struct Teclado: View {
     @ObservedObject var palabraViewModel: PalabrasModelView
     
     var body: some View {
-        VStack(spacing: 3) {
+        VStack(spacing: UIScreen.main.bounds.height * 0.0035) {
             
-            HStack(spacing: 3) {
+            HStack(spacing: UIScreen.main.bounds.height * 0.0035) {
                 ForEach(0..<10) { index in
                     Button {
                         if palabraViewModel.palabra[0] == "" {
@@ -41,7 +41,7 @@ struct Teclado: View {
                 }
             }
             
-            HStack(spacing: 3) {
+            HStack(spacing: UIScreen.main.bounds.height * 0.0035) {
                 ForEach(10..<20) { index in
                     Button {
                         if palabraViewModel.palabra[0] == "" {
@@ -68,7 +68,7 @@ struct Teclado: View {
                 }
             }
             
-            HStack(spacing: 3) {
+            HStack(spacing: UIScreen.main.bounds.height * 0.0035) {
                 
                 Rectangle()
                     .frame(width: UIScreen.main.bounds.width / 7.15,
@@ -115,21 +115,6 @@ struct Teclado: View {
             
             Button {
                 palabraViewModel.IntroButton()
-//                if palabraViewModel.CheckWinner() == true {
-//                    palabraViewModel.YouAreAWinner()
-//                } else {
-//                    if palabraViewModel.intentos.count < palabraViewModel.numeroDeIntentos {
-//                        palabraViewModel.CheckGreen()
-//                        palabraViewModel.CheckGray()
-//                        palabraViewModel.CheckYellow()
-//
-//                        palabraViewModel.AppendIntento()
-//                        palabraViewModel.coloresFondo = [Color("ColorPrincipalNegro"), Color("ColorPrincipalNegro"), Color("ColorPrincipalNegro"), Color("ColorPrincipalNegro"), Color("ColorPrincipalNegro")]
-//                        palabraViewModel.encontradas = [false, false, false, false, false]
-//                    } else {
-//                        palabraViewModel.YouAreALoser()
-//                    }
-//                }
             } label: {
                 Tecla(palabraViewModel: palabraViewModel,
                       text: "INTRO",
@@ -149,8 +134,8 @@ struct Teclado: View {
     }
 }
 
-//struct Teclado_Previews: PreviewProvider {
-//    static var previews: some View {
-//        Juego()
-//    }
-//}
+struct Teclado_Previews: PreviewProvider {
+    static var previews: some View {
+        VistaPrincipal()
+    }
+}

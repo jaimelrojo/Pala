@@ -13,7 +13,7 @@ struct Marcador: View {
     @ObservedObject var menuViewModel: MenuViewModel
     
     var body: some View {
-        HStack {
+        VStack {
             BotonRectangular(texto: menuViewModel.mostrarPalabraScore ? "Puntuación: \(palabraViewModel.scoreActual)" : "\(palabraViewModel.scoreActual)",
                              colorFondo: palabraViewModel.juegoComenzado ? Color("ColorPrincipalNegro") : Color("ColorPrincipalBlanco"),
                              colorLetra: palabraViewModel.juegoComenzado ? Color("ColorPrincipalBlanco") : Color("ColorPrincipalNegro"),
@@ -25,7 +25,13 @@ struct Marcador: View {
                         menuViewModel.TapPuntuacion()
                     }
                 }
+            
+            if palabraViewModel.juegoComenzado {
+                Spacer()
+            }
         }
+        .frame(width: UIScreen.main.bounds.width,
+               height: UIScreen.main.bounds.height * 0.904)
     }
 }
 

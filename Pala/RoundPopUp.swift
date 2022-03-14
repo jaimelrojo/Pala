@@ -16,7 +16,9 @@ struct RoundPopUp: View {
             .foregroundColor(Color("ColorPrincipalNegro"))
             .overlay(
                 VStack {
+                    
                     Spacer()
+                    
                     if palabraViewModel.CheckWinner() == true {
                         Text("Ganador")
                             .foregroundColor(Color("ColorPrincipalBlanco"))
@@ -48,7 +50,7 @@ struct RoundPopUp: View {
                         palabraViewModel.NewRound()
                         palabraViewModel.showWinner.toggle()
                     } label: {
-                        BotonRectangular(texto: "Siguiente palabra",
+                        BotonRectangular(texto: palabraViewModel.CheckWinner() ? "Siguiente palabra" : "Comienza de nuevo",
                                          colorFondo: Color("ColorPrincipalBlanco"),
                                          colorLetra: Color("ColorPrincipalNegro"),
                                          width: 0.88,
@@ -63,7 +65,6 @@ struct RoundPopUp: View {
                    height: UIScreen.main.bounds.height * 0.328)
             .cornerRadius(25)
             .animation(palabraViewModel.animation)
-            .transition(.move(edge: .bottom))
     }
 }
 

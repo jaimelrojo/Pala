@@ -19,6 +19,7 @@
 		EE8DAEAB27C3FFA200204D09 /* Teclado.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE8DAEAA27C3FFA200204D09 /* Teclado.swift */; };
 		EE8DAEAF27C41B2F00204D09 /* Logo.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE8DAEAE27C41B2F00204D09 /* Logo.swift */; };
 		EE8DAEB127C41C1100204D09 /* MenuDesplegable.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE8DAEB027C41C1100204D09 /* MenuDesplegable.swift */; };
+		EE9BEDE727DDFB180063D387 /* BotonSalir.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE9BEDE627DDFB180063D387 /* BotonSalir.swift */; };
 		EEDE0DD527C5AD2600DF9AFE /* Cubito.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEDE0DD427C5AD2600DF9AFE /* Cubito.swift */; };
 		EEE4344027CEBF1E00509DF2 /* Tecla.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEE4343F27CEBF1E00509DF2 /* Tecla.swift */; };
 		EEEA7DC627C8492400FCECD3 /* RoundPopUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEEA7DC527C8492400FCECD3 /* RoundPopUp.swift */; };
@@ -51,6 +52,7 @@
 		EE8DAEAA27C3FFA200204D09 /* Teclado.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Teclado.swift; sourceTree = "<group>"; };
 		EE8DAEAE27C41B2F00204D09 /* Logo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logo.swift; sourceTree = "<group>"; };
 		EE8DAEB027C41C1100204D09 /* MenuDesplegable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuDesplegable.swift; sourceTree = "<group>"; };
+		EE9BEDE627DDFB180063D387 /* BotonSalir.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BotonSalir.swift; sourceTree = "<group>"; };
 		EEDE0DD427C5AD2600DF9AFE /* Cubito.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cubito.swift; sourceTree = "<group>"; };
 		EEE4343F27CEBF1E00509DF2 /* Tecla.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tecla.swift; sourceTree = "<group>"; };
 		EEEA7DC527C8492400FCECD3 /* RoundPopUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundPopUp.swift; sourceTree = "<group>"; };
@@ -98,6 +100,7 @@
 				EE41BC3727DAEBF200A7C8D6 /* VistaPrincipal.swift */,
 				EE41BC3B27DB03A800A7C8D6 /* MenuInicial.swift */,
 				EE8C020727DCBB430023E9AE /* MenuViewModel.swift */,
+				EE9BEDE627DDFB180063D387 /* BotonSalir.swift */,
 				EE4E36A727C3A9A700B60513 /* Assets.xcassets */,
 				EE8DAEB027C41C1100204D09 /* MenuDesplegable.swift */,
 				EE4E36A927C3A9A700B60513 /* Preview Content */,
@@ -190,6 +193,7 @@
 				EEE4344027CEBF1E00509DF2 /* Tecla.swift in Sources */,
 				EE8DAEB127C41C1100204D09 /* MenuDesplegable.swift in Sources */,
 				EE41BC3C27DB03A800A7C8D6 /* MenuInicial.swift in Sources */,
+				EE9BEDE727DDFB180063D387 /* BotonSalir.swift in Sources */,
 				EE41BC3A27DAF08800A7C8D6 /* Marcador.swift in Sources */,
 				EEDE0DD527C5AD2600DF9AFE /* Cubito.swift in Sources */,
 				EE41BC3827DAEBF200A7C8D6 /* VistaPrincipal.swift in Sources */,

@@ -25,57 +25,28 @@ struct VistaPrincipal: View {
                     Juego(palabraViewModel: palabraViewModel)
                 }
                 .transition(.move(edge: .bottom))
-                
-                VStack {
-                    if palabraViewModel.showWinner {
-                        Spacer()
-                        RoundPopUp(palabraViewModel: palabraViewModel)
-                    }
-                }
             }
             
-            VStack {
-                HStack {
-                    if palabraViewModel.juegoComenzado {
-                        Button {
-                            palabraViewModel.juegoComenzado = false
-                        } label: {
-                            Image(systemName: "xmark")
-                                .resizable()
-                                .scaledToFit()
-                                .foregroundColor(Color("ColorPrincipalNegro"))
-                                .frame(width: UIScreen.main.bounds.width * 0.06,
-                                       height: UIScreen.main.bounds.width * 0.06)
-                                .animation(palabraViewModel.animation)
-                        }
-                        .transition(.move(edge: .bottom))
-                    }
-                    
-                    Spacer()
-                    
-                    Marcador(palabraViewModel: palabraViewModel,
-                             menuViewModel: menuViewModel)
-                    //                        .offset(y: palabraViewModel.juegoComenzado ? 0 : 100)
-                    
-                    Spacer()
-                    
-                    VStack {
-                        if palabraViewModel.juegoComenzado {
-                            Rectangle()
-                                .frame(width: UIScreen.main.bounds.width * 0.1,
-                                       height: UIScreen.main.bounds.width * 0.1)
-                                .opacity(0)
-                        }
-                    }
+            if palabraViewModel.juegoComenzado {
+                VStack {
+                    BotonSalir(palabraViewModel: palabraViewModel,
+                               menuViewModel: menuViewModel)
                 }
-                .padding(.horizontal)
-                
-                if palabraViewModel.juegoComenzado {
-                    Spacer()
-                }
+                .transition(.move(edge: .bottom))
             }
-            .frame(width: UIScreen.main.bounds.width,
-                   height: UIScreen.main.bounds.height * 0.904)
+            
+            if palabraViewModel.showWinner {
+                VStack {
+                    Spacer()
+                    RoundPopUp(palabraViewModel: palabraViewModel)
+                        .offset(y: -UIScreen.main.bounds.width * 0.017)
+                }
+                .transition(.move(edge: .bottom))
+                
+            }
+            
+            Marcador(palabraViewModel: palabraViewModel,
+                     menuViewModel: menuViewModel)
         }
     }
 }

@@ -20,7 +20,7 @@ struct Cubito: View {
                           weight: .regular,
                           design: .monospaced))
             .foregroundColor(colorLetra)
-            .frame(width: width,
+            .frame(width: UIScreen.main.bounds.width / width,
                     height: UIScreen.main.bounds.width / 5.8)
 //            .animation(.default)
 //            .animation(.spring(response: 0.7, dampingFraction: 0.7))

@@ -43,12 +43,12 @@ class PalabrasModelView: ObservableObject {
     var letras: [String] = "QWERTYUIOPASDFGHJKLÑZXCVBNM".map { String($0) }
     var coloresTeclas: [Color] = []
     var coloresTeclasLetras: [Color] = []
-    @State var anchoCubito: Double = UIScreen.main.bounds.width / 5.8
+    var anchoCubito: Double = 5.8
     
     @Published var diccionarioRevuelto: [String] = [""]
     @Published var palabraSeleccionada: String = ""
     @Published var palabraSeleccionadaDividida: [String] = ["", "", "", "", ""]
-    @Published var contador = 0
+    @AppStorage("contador") var contador = 0
     
     @Published var palabra: [String] = ["", "", "", "", ""]
     @Published var coloresLetra: [Color] = [Color("ColorPrincipalBlanco"), Color("ColorPrincipalBlanco"), Color("ColorPrincipalBlanco"), Color("ColorPrincipalBlanco"), Color("ColorPrincipalBlanco")]
@@ -62,17 +62,14 @@ class PalabrasModelView: ObservableObject {
     @Published var timer: Timer?
     @Published var timerCounter = 0
     
-//    @Published var scoreActual = 0
-//    @Published var highScore = 0
     @AppStorage("scoreActual") var scoreActual: Int = 0
     @AppStorage("highScore") var highScore: Int = 0
     
-    @Published var animation = Animation.spring(response: 0.7, dampingFraction: 0.7)
+    @Published var animation = Animation.spring(response: 0.7, dampingFraction: 0.8)
     
     @Published var juegoComenzado: Bool = false
     
     init() {
-        SelectWord()
         ColorKeyboardWhite()
     }
     
@@ -99,6 +96,7 @@ class PalabrasModelView: ObservableObject {
     func SelectWord() {
         if contador == 0 {
             diccionarioRevuelto = diccionario.shuffled()
+//            UserDefaults.standard.set(diccionarioRevuelto, forKey: "diccionarioRevuelto")
         }
         palabraSeleccionada.removeAll()
         palabraSeleccionada = diccionarioRevuelto[contador]
@@ -279,34 +277,27 @@ class PalabrasModelView: ObservableObject {
 
 struct Juego: View {
     
-//    @StateObject var palabraViewModel: PalabrasModelView = PalabrasModelView()
-//    @State var mostrarPalabraScore: Bool = true
-//    @State var anchoScore: Double = 0.55
-//    @State var conteoTimer: Timer?
-//    @State var conteoCounter = 0
     @ObservedObject var palabraViewModel: PalabrasModelView
     
     var body: some View {
             
-        VStack(spacing: 18) {
-//            VStack {
-//                Text("\(palabraViewModel.diccionarioRevuelto[0])")
-//                    .foregroundColor(Color("ColorNegro"))
-//                Text("\(palabraViewModel.diccionarioRevuelto[1])")
-//                    .foregroundColor(Color("ColorNegro"))
-//                Text("\(palabraViewModel.diccionarioRevuelto[2])")
-//                    .foregroundColor(Color("ColorNegro"))
-//                Text("\(palabraViewModel.scoreActual)")
-//                    .foregroundColor(Color("ColorRojo"))
-//                Text("\(palabraViewModel.highScore)")
-//                    .foregroundColor(Color("ColorBlanco"))
+        VStack(spacing: UIScreen.main.bounds.height * 0.024) {
+            
+            Spacer()
+            VStack {
+                Text("\(palabraViewModel.diccionarioRevuelto[0])")
+                    .foregroundColor(Color("ColorPrincipalNegro"))
+                Text("\(palabraViewModel.diccionarioRevuelto[1])")
+                    .foregroundColor(Color("ColorPrincipalNegro"))
+                Text("\(palabraViewModel.diccionarioRevuelto[2])")
+                    .foregroundColor(Color("ColorPrincipalNegro"))
 //
-//                HStack {
-//                    ForEach(0..<5) { index in
-//                        Text("\(palabraViewModel.palabraSeleccionadaDividida[index])")
-//                            .foregroundColor(Color("ColorPrincipalNegro"))
-//                    }
-//                }
+                HStack {
+                    ForEach(0..<5) { index in
+                        Text("\(palabraViewModel.palabraSeleccionadaDividida[index])")
+                            .foregroundColor(Color("ColorPrincipalNegro"))
+                    }
+                }
 //                HStack {
 //                    ForEach(0..<5) { index in
 //                        if palabraViewModel.encontradas[index] == false {
@@ -318,12 +309,7 @@ struct Juego: View {
 //                        }
 //                    }
 //                }
-//            }
-//
-//            Image("cheems")
-//                .resizable()
-//                .scaledToFit()
-//                .animation(.spring(response: 0.7, dampingFraction: 0.7))
+            }
 //
 //            Button("Cambiar palabra") {
 //                if palabraViewModel.contador < (palabraViewModel.diccionarioRevuelto.count - 1) {
@@ -377,7 +363,6 @@ struct Juego: View {
             }
             Teclado(palabraViewModel: palabraViewModel)
         }
-        .transition(.move(edge: .bottom))
         .frame(width: UIScreen.main.bounds.width,
                height: UIScreen.main.bounds.height * 0.904)
     }
