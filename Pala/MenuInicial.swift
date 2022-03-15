@@ -24,7 +24,7 @@ struct MenuInicial: View {
                     Spacer()
                     
                     Button {
-                        
+
                     } label: {
                         Image(systemName: "chart.bar.xaxis")
                             .resizable()
@@ -32,14 +32,15 @@ struct MenuInicial: View {
                             .foregroundColor(Color("ColorPrincipalBlanco"))
                             .frame(width: UIScreen.main.bounds.width * 0.11,
                                    height: UIScreen.main.bounds.width * 0.11)
+                            .animation(palabraViewModel.animation)
                     }
+                    .transition(.move(edge: .top))
                 }
                 
                 Button {
                     menuViewModel.anchoBoton = 1
                     menuViewModel.altoBoton = 1
                     palabraViewModel.juegoComenzado = true
-                    menuViewModel.EraseWordPuntuacion()
                     palabraViewModel.SelectWord()
                 } label: {
                     BotonRectangular(texto: palabraViewModel.juegoComenzado ? "" : palabraViewModel.scoreActual != 0 ? "Continuar" : "Comenzar",

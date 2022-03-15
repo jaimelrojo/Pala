@@ -45,11 +45,13 @@ class PalabrasModelView: ObservableObject {
     var coloresTeclasLetras: [Color] = []
     var anchoCubito: Double = 5.8
     
-    @Published var diccionarioRevuelto: [String] = [""]
+    @Published var diccionarioRevuelto = UserDefaults.standard.stringArray(forKey: "diccionarioRevuelto")
+    
+//    @Published var diccionarioRevuelto: [String] = [""]
     @Published var palabraSeleccionada: String = ""
     @Published var palabraSeleccionadaDividida: [String] = ["", "", "", "", ""]
-    @Published var contador = 0
-//    @AppStorage("contador") var contador = 0
+//    @Published var contador = 0
+    @AppStorage("contador") var contador = 0
     
     @Published var palabra: [String] = ["", "", "", "", ""]
     @Published var coloresLetra: [Color] = [Color("ColorPrincipalBlanco"), Color("ColorPrincipalBlanco"), Color("ColorPrincipalBlanco"), Color("ColorPrincipalBlanco"), Color("ColorPrincipalBlanco")]
@@ -97,10 +99,10 @@ class PalabrasModelView: ObservableObject {
     func SelectWord() {
         if contador == 0 {
             diccionarioRevuelto = diccionario.shuffled()
-//            UserDefaults.standard.set(diccionarioRevuelto, forKey: "diccionarioRevuelto")
+            UserDefaults.standard.set(diccionarioRevuelto, forKey: "diccionarioRevuelto")
         }
         palabraSeleccionada.removeAll()
-        palabraSeleccionada = diccionarioRevuelto[contador]
+        palabraSeleccionada = diccionarioRevuelto![contador]
         palabraSeleccionadaDividida = palabraSeleccionada.map { String($0) }
     }
     
@@ -253,7 +255,7 @@ class PalabrasModelView: ObservableObject {
     
     func NewRound() {
         if CheckWinner() {
-            if contador < (diccionarioRevuelto.count - 1) {
+            if contador < (diccionarioRevuelto!.count - 1) {
                 contador += 1
             } else {
                 contador = 0
@@ -274,12 +276,6 @@ class PalabrasModelView: ObservableObject {
         intentos.removeAll()
         intentos.insert(.init(letra1: palabra[0], colorFondo1: coloresFondo[0], colorLetra1: coloresLetra[0], letra2: palabra[1], colorFondo2: coloresFondo[1], colorLetra2: coloresLetra[1], letra3: palabra[2], colorFondo3: coloresFondo[2], colorLetra3: coloresLetra[2], letra4: palabra[3], colorFondo4: coloresFondo[3], colorLetra4: coloresLetra[3], letra5: palabra[4], colorFondo5: coloresFondo[4], colorLetra5: coloresLetra[4], done: false), at: 0)
         
-//        if contador < (diccionarioRevuelto.count - 1) {
-//            contador += 1
-//        } else {
-//            contador = 0
-//        }
-        
         SelectWord()
     }
 }
@@ -294,13 +290,13 @@ struct Juego: View {
             
         VStack(spacing: UIScreen.main.bounds.height * 0.024) {
             
-            Spacer()
+//            Spacer()
 //            VStack {
-//                Text("\(palabraViewModel.diccionarioRevuelto[0])")
+//                Text("\(palabraViewModel.diccionarioRevuelto![0])")
 //                    .foregroundColor(Color("ColorPrincipalNegro"))
-//                Text("\(palabraViewModel.diccionarioRevuelto[1])")
+//                Text("\(palabraViewModel.diccionarioRevuelto![1])")
 //                    .foregroundColor(Color("ColorPrincipalNegro"))
-//                Text("\(palabraViewModel.diccionarioRevuelto[2])")
+//                Text("\(palabraViewModel.diccionarioRevuelto![2])")
 //                    .foregroundColor(Color("ColorPrincipalNegro"))
 //
 //                HStack {

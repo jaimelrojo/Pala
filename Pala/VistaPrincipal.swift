@@ -15,10 +15,8 @@ struct VistaPrincipal: View {
     var body: some View {
         ZStack {
             
-            VStack {
-                MenuInicial(palabraViewModel: palabraViewModel,
-                            menuViewModel: menuViewModel)
-            }
+            MenuInicial(palabraViewModel: palabraViewModel,
+                        menuViewModel: menuViewModel)
             
             VStack {
                 if palabraViewModel.juegoComenzado {
