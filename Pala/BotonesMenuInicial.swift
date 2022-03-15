@@ -11,7 +11,7 @@ struct BotonesMenuInicial: View {
     
     @ObservedObject var palabraViewModel: PalabrasModelView
     
-    @State private var mailData = ComposeMailData(subject: "¡Sugerencia para Yonu!",
+    @State private var mailData = ComposeMailData(subject: "¡Sugerencia para Pala!",
                                                   recipients: ["yonuapp@icloud.com"],
                                                   message: "")
     @State private var showMailView = false
@@ -47,6 +47,12 @@ struct BotonesMenuInicial: View {
                             ancho: 0.11,
                             altura: 0.11,
                             animacion: palabraViewModel.animation)
+            }
+            .disabled(!MailView.canSendMail)
+            .sheet(isPresented: $showMailView) {
+                MailView(data: $mailData) { result in
+                    print(result)
+                }
             }
         }
     }
