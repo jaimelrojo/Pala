@@ -35,7 +35,7 @@ struct VistaPrincipal: View {
                 if palabraViewModel.showWinner {
                     Spacer()
                     RoundPopUp(palabraViewModel: palabraViewModel)
-                        .offset(y: -UIScreen.main.bounds.width * 0.017)
+                        .offset(y: -UIScreen.main.bounds.width * 0.016)
                 }
             }
             

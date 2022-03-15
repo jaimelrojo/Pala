@@ -23,18 +23,8 @@ struct MenuInicial: View {
                 if palabraViewModel.juegoComenzado == false {
                     Spacer()
                     
-                    Button {
-
-                    } label: {
-                        Image(systemName: "chart.bar.xaxis")
-                            .resizable()
-                            .scaledToFit()
-                            .foregroundColor(Color("ColorPrincipalBlanco"))
-                            .frame(width: UIScreen.main.bounds.width * 0.11,
-                                   height: UIScreen.main.bounds.width * 0.11)
-                            .animation(palabraViewModel.animation)
-                    }
-                    .transition(.move(edge: .top))
+                    BotonesMenuInicial(palabraViewModel: palabraViewModel)
+                        .transition(.offset(y: -UIScreen.main.bounds.height))
                 }
                 
                 Button {
@@ -57,7 +47,7 @@ struct MenuInicial: View {
             VStack {
                 Logo(colorLetras: palabraViewModel.juegoComenzado ? Color("ColorPrincipalNegro") : Color("ColorPrincipalBlanco"),
                      animacion: palabraViewModel.animation)
-                    .offset(y: -UIScreen.main.bounds.height * 0.31)
+                    .offset(y: -UIScreen.main.bounds.height * 0.17)
                     .opacity(palabraViewModel.juegoComenzado ? 0.6 : 1)
             }
         }

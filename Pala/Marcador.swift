@@ -22,7 +22,7 @@ struct Marcador: View {
                                       weight: .light,
                                       design: .monospaced))
                         .animation(palabraViewModel.animation)
-                        .transition(.offset(x: -UIScreen.main.bounds.width * 0.9))
+                        .transition(.offset(y: -UIScreen.main.bounds.height))
                 }
                 
                 BotonRectangular(texto: palabraViewModel.juegoComenzado ? "\(palabraViewModel.scoreActual)" : palabraViewModel.scoreActual == 0 ? "\(palabraViewModel.highScore)" : "\(palabraViewModel.scoreActual)",
@@ -49,7 +49,7 @@ struct Marcador: View {
                                          height: 0.04,
                                          animation: palabraViewModel.animation)
                     }
-                    .transition(.offset(x: -UIScreen.main.bounds.width * 0.9))
+                    .transition(.offset(y: -UIScreen.main.bounds.height))
                 }
             }
             
@@ -59,6 +59,7 @@ struct Marcador: View {
         }
         .frame(width: UIScreen.main.bounds.width,
                height: UIScreen.main.bounds.height * 0.904)
+        .offset(y: palabraViewModel.juegoComenzado ? .zero : UIScreen.main.bounds.height * 0.15)
     }
 }
 
