@@ -106,20 +106,25 @@ class PalabrasModelView: ObservableObject {
         palabraSeleccionadaDividida = palabraSeleccionada.map { String($0) }
     }
     
-    func CheckValidIntro() -> Bool {
-        if palabra[0] == "" {
-            return false
-        } else if palabra [1] == "" {
-            return false
-        } else if palabra [2] == "" {
-            return false
-        } else if palabra [3] == "" {
-            return false
-        } else if palabra [4] == "" {
-            return false
-        } else {
-            return true
+//    func CheckValidIntro() -> Bool {
+//        for index in palabra.indices {
+//            if palabra[index] == "" {
+//                return false
+//            }
+//        }
+//        return true
+//    }
+    
+    func CheckValidIntroDicc() -> Bool {
+        
+        let palabraPegada = palabra.joined(separator: "")
+
+        for index in diccionario.indices {
+            if diccionario[index] == palabraPegada {
+                return true
+            }
         }
+        return false
     }
     
     func CheckWinner() -> Bool {

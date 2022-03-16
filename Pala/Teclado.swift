@@ -122,9 +122,9 @@ struct Teclado: View {
                       colorLetra: Color("ColorPrincipalBlanco"),
                       width: UIScreen.main.bounds.width / 1.025,
                       height: UIScreen.main.bounds.height / 15,
-                      opacity: palabraViewModel.CheckValidIntro() ? 1.0 : 0.6)
+                      opacity: palabraViewModel.CheckValidIntroDicc() ? 1.0 : 0.6)
             }
-            .disabled(!palabraViewModel.CheckValidIntro())
+            .disabled(!palabraViewModel.CheckValidIntroDicc())
         }
         .foregroundColor(Color("ColorPrincipalBlanco"))
         .font(.system(size: UIScreen.main.bounds.height / 35,
