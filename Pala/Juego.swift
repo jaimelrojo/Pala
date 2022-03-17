@@ -71,6 +71,7 @@ class PalabrasModelView: ObservableObject {
     @Published var animation = Animation.spring(response: 0.7, dampingFraction: 0.8)
     
     @Published var juegoComenzado: Bool = false
+    @Published var alertaActivada: Bool = false
     
     init() {
         ColorKeyboardWhite()
@@ -283,6 +284,26 @@ class PalabrasModelView: ObservableObject {
         
         SelectWord()
     }
+    
+    func XMarkButton() {
+        if intentos.count <= 1 {
+            juegoComenzado = false
+            palabra = ["", "", "", "", ""]
+        } else {
+            alertaActivada = true
+        }
+    }
+    
+    func BotonAlertaCont() {
+        alertaActivada = false
+    }
+    
+    func BotonAlertaSalir() {
+        alertaActivada = false
+        scoreActual = 0
+        juegoComenzado = false
+        NewRound()
+    }
 }
 
 //MARK: VISTA
@@ -374,6 +395,7 @@ struct Juego: View {
                 }
             }
             Teclado(palabraViewModel: palabraViewModel)
+                .disabled(palabraViewModel.alertaActivada)
         }
         .frame(width: UIScreen.main.bounds.width,
                height: UIScreen.main.bounds.height * 0.904)

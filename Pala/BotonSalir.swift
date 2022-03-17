@@ -17,9 +17,11 @@ struct BotonSalir: View {
         VStack {
             HStack {
                 Button {
-                    menuViewModel.anchoBoton = 0.88
-                    menuViewModel.altoBoton = 0.08
-                    palabraViewModel.juegoComenzado = false
+                    if palabraViewModel.intentos.count <= 1 {
+                        menuViewModel.anchoBoton = 0.88
+                        menuViewModel.altoBoton = 0.08
+                    }
+                    palabraViewModel.XMarkButton()
                 } label: {
                     Image(systemName: "xmark")
                         .resizable()

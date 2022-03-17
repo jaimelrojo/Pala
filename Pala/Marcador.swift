@@ -10,7 +10,6 @@ import SwiftUI
 struct Marcador: View {
     
     @ObservedObject var palabraViewModel: PalabrasModelView
-    @ObservedObject var menuViewModel: MenuViewModel
     
     var body: some View {
         VStack {

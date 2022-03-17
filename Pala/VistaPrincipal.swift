@@ -28,6 +28,7 @@ struct VistaPrincipal: View {
                 if palabraViewModel.juegoComenzado {
                     BotonSalir(palabraViewModel: palabraViewModel,
                                menuViewModel: menuViewModel)
+                    .disabled(palabraViewModel.alertaActivada)
                 }
             }
             
@@ -35,12 +36,17 @@ struct VistaPrincipal: View {
                 if palabraViewModel.showWinner {
                     Spacer()
                     RoundPopUp(palabraViewModel: palabraViewModel)
-                        .offset(y: -UIScreen.main.bounds.width * 0.016)
+                        .offset(y: -UIScreen.main.bounds.width * 0.017)
                 }
             }
             
-            Marcador(palabraViewModel: palabraViewModel,
-                     menuViewModel: menuViewModel)
+            Marcador(palabraViewModel: palabraViewModel)
+            
+            if palabraViewModel.alertaActivada {
+                Alerta(palabraViewModel: palabraViewModel,
+                       menuViewModel: menuViewModel)
+                .transition(.slide)
+            }
         }
     }
 }
