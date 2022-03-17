@@ -36,16 +36,19 @@ struct VistaPrincipal: View {
                 if palabraViewModel.showWinner {
                     Spacer()
                     RoundPopUp(palabraViewModel: palabraViewModel)
-                        .offset(y: -UIScreen.main.bounds.width * 0.017)
+//                        .offset(y: -UIScreen.main.bounds.width * 0.017)
                 }
             }
             
             Marcador(palabraViewModel: palabraViewModel)
             
-            if palabraViewModel.alertaActivada {
-                Alerta(palabraViewModel: palabraViewModel,
-                       menuViewModel: menuViewModel)
-                .transition(.slide)
+            VStack {
+                if palabraViewModel.alertaActivada {
+                    Spacer()
+                    Alerta(palabraViewModel: palabraViewModel,
+                           menuViewModel: menuViewModel)
+//                    .offset(y: -UIScreen.main.bounds.width * 0.017)
+                }
             }
         }
     }

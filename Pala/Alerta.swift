@@ -14,17 +14,16 @@ struct Alerta: View {
     
     var body: some View {
         ZStack {
-            
             Rectangle()
                 .foregroundColor(Color("ColorPrincipalNegro"))
                 .cornerRadius(25)
-                .shadow(color: Color("ColorNegro"),
-                        radius: 10)
+//                .shadow(color: Color("ColorNegro"),
+//                        radius: 10)
             
             VStack() {
                 Spacer()
                 
-                VStack() {
+                VStack(spacing: UIScreen.main.bounds.height * 0.005) {
                     Image(systemName: "info.circle")
                         .resizable()
                         .scaledToFit()
@@ -33,7 +32,7 @@ struct Alerta: View {
                                height: UIScreen.main.bounds.width * 0.08)
                     
                     Text("¿Seguro que deseas salir?")
-                        .font(.system(size: UIScreen.main.bounds.height / 35,
+                        .font(.system(size: UIScreen.main.bounds.height / 30,
                                       weight: .light,
                                       design: .monospaced))
                 }
@@ -42,14 +41,16 @@ struct Alerta: View {
                 
                 Spacer()
                 
-                HStack {
+                HStack() {
+                    Spacer()
+                    
                     Button {
                         palabraViewModel.BotonAlertaCont()
                     } label: {
                         BotonRectangular(texto: "Continuar",
                                          colorFondo: Color("ColorPrincipalBlanco"),
                                          colorLetra: Color("ColorPrincipalNegro"),
-                                         width: 0.375,
+                                         width: 0.415,
                                          height: 0.08,
                                          animation: palabraViewModel.animation)
                     }
@@ -64,18 +65,20 @@ struct Alerta: View {
                         BotonRectangular(texto: "Salir",
                                          colorFondo: Color("ColorRojo"),
                                          colorLetra: Color("ColorBlanco"),
-                                         width: 0.375,
+                                         width: 0.415,
                                          height: 0.08,
                                          animation: palabraViewModel.animation)
                     }
+                    
+                    Spacer()
                 }
             }
-            .padding(20)
+            .padding(.bottom, UIScreen.main.bounds.height * 0.05)
         }
-        .frame(width: UIScreen.main.bounds.width * 0.9,
-               height: UIScreen.main.bounds.height * 0.32)
+        .frame(width: UIScreen.main.bounds.width,
+               height: UIScreen.main.bounds.height * 0.335)
         .animation(palabraViewModel.animation)
-        .transition(.opacity)
+        .transition(.move(edge: .bottom))
     }
 }
 
