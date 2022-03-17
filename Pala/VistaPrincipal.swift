@@ -47,7 +47,6 @@ struct VistaPrincipal: View {
                     Spacer()
                     Alerta(palabraViewModel: palabraViewModel,
                            menuViewModel: menuViewModel)
-//                    .offset(y: -UIScreen.main.bounds.width * 0.017)
                 }
             }
         }

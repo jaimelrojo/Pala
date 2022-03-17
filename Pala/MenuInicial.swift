@@ -47,8 +47,8 @@ struct MenuInicial: View {
             VStack {
                 Logo(colorLetras: palabraViewModel.juegoComenzado ? Color("ColorPrincipalNegro") : Color("ColorPrincipalBlanco"),
                      animacion: palabraViewModel.animation)
-                    .offset(y: -UIScreen.main.bounds.height * 0.17)
-                    .opacity(palabraViewModel.juegoComenzado ? 0.6 : 1)
+                .offset(y: palabraViewModel.juegoComenzado ? -UIScreen.main.bounds.height * 0.17 : -UIScreen.main.bounds.height * 0.12)
+                .opacity(palabraViewModel.juegoComenzado ? 0.6 : 1)
             }
         }
     }
